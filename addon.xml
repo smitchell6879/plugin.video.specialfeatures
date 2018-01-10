@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon id="plugin.special.features"
+version="2.2.0"
+name="Special Features"
+provider-name="smitchell6879">
+<requires>
+  <import addon="xbmc.python" version="2.24.0"/>
+</requires>
+<extension point="xbmc.python.pluginsource" library="plugin.py">
+  <provides>video</provides>
+</extension>
+<extension point="xbmc.addon.metadata">
+  <summary lang="en"></summary>
+  <description lang="en"></description>
+  <disclaimer lang="en"></disclaimer>
+  <assets>
+    <icon>icon.png</icon>
+    <fanart>fanart.jpg</fanart>
+    <screenshot>resources\screenshot-01.jpg</screenshot>
+    <screenshot>resources\screenshot-02.jpg</screenshot>
+    <screenshot>resources\screenshot-03.jpg</screenshot>    
+  </assets>
+  <news></news>
+</extension>
+</addon>
