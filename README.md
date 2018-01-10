@@ -20,5 +20,5 @@ this is for code
 
 </advancedsetting>
 ```
-
+![icon](https://raw.githubusercontent.com/username/projectname/branch/path/to/img.png)
 A [testing link](https://en.wikipedia.org/wiki/Markdown)
