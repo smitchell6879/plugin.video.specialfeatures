@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addon id="plugin.special.features"
-version="2.2.0"
+version="1.0"
 name="Special Features"
 provider-name="smitchell6879">
 <requires>
@@ -10,8 +10,8 @@ provider-name="smitchell6879">
   <provides>video</provides>
 </extension>
 <extension point="xbmc.addon.metadata">
-  <summary lang="en"></summary>
-  <description lang="en"></description>
+  <summary lang="en">Presents Movie Extras</summary>
+  <description lang="en">Inspired by the new bluray features of Kodi 18; This addon will present all of the bonus videos, discs, versions you have of movies in your library.</description>
   <disclaimer lang="en"></disclaimer>
   <assets>
     <icon>icon.png</icon>
