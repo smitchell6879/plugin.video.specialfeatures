@@ -244,7 +244,7 @@ def context():
                         _dialog.ok(_addon.getLocalizedString(30000),_addon.getLocalizedString(30017)) 
                         return
             
-    elif status == _addon.getLocalizedString(30053) and menu == 1:
+    elif status == _addon.getLocalizedString(30007) and menu == 1:
         if addon_data:
             read = ET.parse(_addon_set)
             line = read.getroot()
@@ -254,8 +254,6 @@ def context():
                 if l == 'context-menu':
                     li=line.text
                     if li == 'false':
-                        # line.text = str('true')
-                        # read.write(_addon_set)
                         _addon.setSettingBool(id='context-menu',value=1)
                         _dialog.ok(_addon.getLocalizedString(30000),_addon.getLocalizedString(30017)) 
 
