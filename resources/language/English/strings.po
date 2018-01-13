@@ -1,0 +1,158 @@
+# XBMC Media Center language file
+# Addon Name: Special Features
+# Addon id: plugin.specialfeatures
+msgid ""
+msgstr ""
+
+#######################################################
+
+msgctxt "#30000"
+msgid "Special Features"
+msgstr ""
+
+msgctxt "#30001"
+msgid "General"
+msgstr ""
+
+msgctxt "#30002"
+msgid "Folder Name"
+msgstr "
+
+msgctxt "#30003"
+msgid "Oops! You Haven't Added Any Special Features"
+msgstr "
+
+msgctxt "#30004"
+msgid "Would You Like to Scan Your Library Now?"
+msgstr ""
+
+msgctxt "#30005"
+msgid "Enabled"
+msgstr ""
+
+msgctxt "#30006"
+msgid "Enable"
+msgstr ""
+
+msgctxt "#30007"
+msgid "Disabled"
+msgstr ""
+
+msgctxt "#30008"
+msgid "Disable"
+msgstr ""
+
+msgctxt "#30009"
+msgid "Special Features - Context Menu Options"
+msgstr ""
+msgctxt "#30010"
+msgid "Pausing Special Features Service to Begin Updating..."
+msgstr ""
+
+msgctxt "#30011"
+msgid " Movies Have Been Found to Have Special Features."
+msgstr ""
+
+msgctxt "#30012"
+msgid "Updating Library 0 out of "
+msgstr ""
+
+msgctxt "#30013"
+msgid "Library Has Updated Successfully."
+msgstr ""
+
+msgctxt "#30014"
+msgid "You will be taken to the Home Menu."
+msgstr ""
+
+msgctxt "#30015"
+msgid "Scanning Library "
+msgstr ""
+
+msgctxt "#30016"
+msgid " out of "
+msgstr ""
+
+msgctxt "#30017"
+msgid "Please Press OK and Close the Setting Menu for the Settings to Take Effect."
+msgstr ""
+
+msgctxt "#30018"
+msgid "Folder should be placed in root of the 'Movie' folder."
+msgstr ""
+
+msgctxt "#30019"
+msgid "Scan/Update Library for Special Features"
+msgstr ""
+
+msgctxt "#30020"
+msgid "Advanced Setting"
+msgstr ""
+
+############################################################
+
+msgctxt "#30021"
+msgid "Enable/Disable Context Menu"
+msgstr ""
+
+##############################################################
+
+msgctxt "#30022"
+msgid "File types to ignore"
+msgstr ""
+
+msgctxt "#30023"
+msgid "The Context Menu is"
+msgstr ""
+
+msgctxt "#30024"
+msgid "Cancel"
+msgstr ""
+
+msgctxt "#30025"
+msgid ""
+msgstr ""
+
+msgctxt "#30026"
+msgid ""
+msgstr ""
+
+msgctxt "#30027"
+msgid ""
+msgstr ""
+
+msgctxt "#30050"
+msgid ""
+msgstr ""
+
+msgctxt "#30051"
+msgid ""
+msgstr ""
+
+msgctxt "#30052"
+msgid ""
+msgstr ""
+
+msgctxt "#30053"
+msgid ""
+msgstr ""
+
+msgctxt "#30054"
+msgid ""
+msgstr ""
+
+msgctxt "#30055"
+msgid ""
+msgstr ""
+
+msgctxt "#30056"
+msgid ""
+msgstr ""
+
+msgctxt "#30057"
+msgid ""
+msgstr ""
+
+msgctxt "#30058"
+msgid ""
+msgstr ""
