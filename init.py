@@ -221,14 +221,14 @@ def context():
     addon_data=xbmcvfs.exists(_addon_set)
     status=_addon.getSetting("context-menu")
     if status == "true":
-        status=_addon.getLocalizedString(30052)
-        yes=_addon.getLocalizedString(30055)
+        status=_addon.getLocalizedString(30005)
+        yes=_addon.getLocalizedString(30008)
     else:
-        status=_addon.getLocalizedString(30053)
-        yes=_addon.getLocalizedString(30054)
-    menu=_dialog.yesno(_addon.getLocalizedString(30056),_addon.getLocalizedString(30057)+" "+str(status),yeslabel=yes,nolabel=_addon.getLocalizedString(30058)) 
+        status=_addon.getLocalizedString(30007)
+        yes=_addon.getLocalizedString(30006)
+    menu=_dialog.yesno(_addon.getLocalizedString(30009),_addon.getLocalizedString(30023)+" "+str(status),yeslabel=yes,nolabel=_addon.getLocalizedString(30024)) 
     
-    if status == _addon.getLocalizedString(30052) and menu == 1:
+    if status == _addon.getLocalizedString(30005) and menu == 1:
         if addon_data:
             read = ET.parse(_addon_set)
             line = read.getroot()
