@@ -89,13 +89,9 @@ msgctxt "#30020"
 msgid "Advanced Setting"
 msgstr ""
 
-############################################################
-
 msgctxt "#30021"
 msgid "Enable/Disable Context Menu"
 msgstr ""
-
-##############################################################
 
 msgctxt "#30022"
 msgid "File types to ignore"
