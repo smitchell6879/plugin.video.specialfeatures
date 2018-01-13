@@ -1,4 +1,0 @@
-# Addon Name: Special Features
-# Addon id: plugin.special.features
-msgid ""
-msgstr ""
