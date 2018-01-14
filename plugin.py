@@ -157,10 +157,11 @@ def list_specialfeatures(category,title):
             url = get_url(action='play', video=video)
             is_folder = False
             xbmcplugin.addDirectoryItem(_handle, url, _listitem, is_folder)
-    if _addon.getSetting("play_all") == 'true':
-        _playall = xbmcgui.ListItem(label="Play All")
-        url = get_url(action='playall', category=category)
-        xbmcplugin.addDirectoryItem(_handle, url, _playall, is_folder)
+    if len(sf_extras) > 1:
+        if _addon.getSetting("play_all") == 'true':
+            _playall = xbmcgui.ListItem(label="Play All")
+            url = get_url(action='playall', category=category)
+            xbmcplugin.addDirectoryItem(_handle, url, _playall, is_folder)
     xbmcplugin.addSortMethod(_handle, xbmcplugin.SORT_METHOD_TITLE_IGNORE_THE )
     xbmcplugin.endOfDirectory(_handle)
 def get_url(**kwargs):
