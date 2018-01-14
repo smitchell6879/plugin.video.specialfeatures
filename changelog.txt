@@ -1,7 +1,9 @@
-011418  Added Play All List option to the Special Features List.
+011418  Added Krypton Support. rolledback .json to 8.0
+        Added Play All List option to the Special Features List.
         Option in settings to turn it off 
         *note as of now this option is true by default this may change
          in the furture.
+         
          
 011318 upload all files and made inital public [beta] release.
 
