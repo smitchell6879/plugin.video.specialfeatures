@@ -22,6 +22,7 @@ _addon_dir  = xbmc.translatePath('special://userdata/addon_data/plugin.specialfe
 _addon_set  = xbmc.translatePath('special://userdata/addon_data/plugin.specialfeatures/settings.xml')
 _db_dir     = xbmc.translatePath('special://userdata/addon_data/plugin.specialfeatures/specialfeatures.db')
 _addon      = xbmcaddon.Addon()
+_play       = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
 _debug      = "true"
 _dialog     = xbmcgui.Dialog()
 _dialpro    = xbmcgui.DialogProgress()
@@ -156,6 +157,10 @@ def list_specialfeatures(category,title):
             url = get_url(action='play', video=video)
             is_folder = False
             xbmcplugin.addDirectoryItem(_handle, url, _listitem, is_folder)
+    if _addon.getSetting("play_all") == 'true':
+        _playall = xbmcgui.ListItem(label="Play All")
+        url = get_url(action='playall', category=category)
+        xbmcplugin.addDirectoryItem(_handle, url, _playall, is_folder)
     xbmcplugin.addSortMethod(_handle, xbmcplugin.SORT_METHOD_TITLE_IGNORE_THE )
     xbmcplugin.endOfDirectory(_handle)
 def get_url(**kwargs):
@@ -163,6 +168,31 @@ def get_url(**kwargs):
 def play_video(path):
     play_item = xbmcgui.ListItem(path=path)
     xbmcplugin.setResolvedUrl(_handle, True, listitem=play_item)
+def playlist(category):
+    query_sfdb(category)
+    _play.clear()
+    for item in movielist:     
+        art       = item.get('art','')
+        fanart    = art.get('fanart','')
+        poster    = art.get('poster', '')
+        year      = item.get('year','')
+        plot      = item.get('plot','')
+        cast      = item.get('cast','')
+        path      = item.get('file','')
+        rating    = item.get('rating','')
+        mpaa      = item.get('mpaa','')
+        dateadded = item.get('dateadded','')
+        sf_extras = item.get('sf_extras', '')
+        for item in sf_extras:
+            title=item.get('sf_title','')
+            video=item.get('sf_path','')
+            _listitem = xbmcgui.ListItem(label=title)
+            _listitem.setArt({'fanart': fanart, 'poster': poster})
+            _listitem.setCast(cast)
+            _listitem.setInfo('video',{'title':title, 'year': year, 'plot': plot, 'path':path, 'rating':rating, 'mpaa':mpaa, 'dateadded':dateadded})
+            _play.add(url=video,listitem=_listitem)
+    xbmc.Player().play(_play)
+
 def router(paramstring):
     params = dict(parse_qsl(paramstring))
     if params:
@@ -174,6 +204,8 @@ def router(paramstring):
             list_specialfeatures(params['category'], params['title'])
         elif params['action'] == 'play':
             play_video(params['video'])
+        elif params['action'] == 'playall':
+            playlist(params['category'])
         else:
             raise ValueError('Invalid paramstring: {0}!'.format(paramstring))
     else:
