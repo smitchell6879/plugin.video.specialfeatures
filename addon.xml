@@ -5,7 +5,7 @@ name="Special Features"
 provider-name="smitchell6879">
 <requires>
   <import addon="xbmc.python" version="2.24.0"/>
-  <import addon="xbmc.json" version="9.1.0"/>
+  <import addon="xbmc.json" version="8.0.0"/>
 </requires>
 <extension point="kodi.context.item">
     <menu id="kodi.core.main">
