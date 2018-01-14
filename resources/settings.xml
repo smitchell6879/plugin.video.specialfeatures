@@ -4,6 +4,7 @@
 		<setting type="lsep" label="30018"/>
 		<setting label="30002" id="extras-folder" type="text" default="Extras"/>
 		<setting label="30019" type="action" action="RunScript(plugin.specialfeatures,scandb)"/>
+		<setting label="30026" type='bool' id="play_all" default="true"/>
 		<setting type="sep"/>
 		<setting type="lsep" label="30020"/>
 		<setting label="30021" type="action" action="RunScript(plugin.specialfeatures,quit)"/>
