@@ -107,11 +107,11 @@ msgid "Cancel"
 msgstr ""
 
 msgctxt "#30025"
-msgid ""
+msgid "Play All"
 msgstr ""
 
 msgctxt "#30026"
-msgid ""
+msgid "Show Play All in Special Features List"
 msgstr ""
 
 msgctxt "#30027"
