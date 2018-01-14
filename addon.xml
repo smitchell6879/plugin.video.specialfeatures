@@ -1,24 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<addon id="plugin.special.features"
+<addon id="plugin.specialfeatures"
 version="1.0"
 name="Special Features"
 provider-name="smitchell6879">
 <requires>
   <import addon="xbmc.python" version="2.24.0"/>
+  <import addon="xbmc.json" version="9.1.0"/>
 </requires>
+<extension point="kodi.context.item">
+    <menu id="kodi.core.main">
+      <item library="addon.py">
+        <label>Special Features</label>
+        <visible>String.IsEqual(Window(home).Property("extrasnxt"),true)+String.IsEqual(ListItem.dbtype,movie)</visible>
+      </item>
+    </menu>
+</extension>
+<extension point="xbmc.service" library="service.py" start="login"/>
+<extension point="xbmc.python.script" library="init.py"/>
 <extension point="xbmc.python.pluginsource" library="plugin.py">
   <provides>video</provides>
 </extension>
 <extension point="xbmc.addon.metadata">
-  <summary lang="en">Presents Movie Extras</summary>
-  <description lang="en">Inspired by the new bluray features of Kodi 18; This addon will present all of the bonus videos, discs, versions you have of movies in your library.</description>
-  <disclaimer lang="en"></disclaimer>
+  <summary lang="en">Brings Special Features and Movie Extras to One Easy to Use View.</summary>
+  <description lang="en">A Addon that brings new life to a old idea. This addon will scan your local library gathering all your special features and make them availble to you with just a few simple clicks.</description>
+  <disclaimer lang="en">This addon is not only a Video addon but a Script and Service as well.</disclaimer>
   <assets>
     <icon>icon.png</icon>
     <fanart>fanart.jpg</fanart>
-    <screenshot>resources\screenshot-01.jpg</screenshot>
-    <screenshot>resources\screenshot-02.jpg</screenshot>
-    <screenshot>resources\screenshot-03.jpg</screenshot>    
+    <screenshot>resources/screenshot001.png</screenshot>
+    <screenshot>resources/screenshot002.png</screenshot>
+    <screenshot>resources/screenshot003.png</screenshot>    
   </assets>
   <news></news>
 </extension>
