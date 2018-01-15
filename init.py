@@ -62,7 +62,7 @@ def init_db():
         m_tmdb = uid.get('tmdb','')
         m_title = item.get('title','')
         m_year = item.get('year','')
-        m_file = str(item.get('file',''))
+        m_file = item.get('file','')
         art = item.get('art','')
         m_fanart = art.get('fanart','')
         m_poster = art.get('poster', '')
@@ -123,7 +123,7 @@ def get_movielist():
     jsonobject = query_db()
     if jsonobject.has_key('result') and jsonobject['result'].has_key('movies'):
         for item in jsonobject['result']['movies']:
-            m_title = item.get('title', '')
+            m_title = item.get('title', '').decode('utf-8')
             totals.append(m_title)
         total_m = len(totals)
         _dialpro.create(_addon.getLocalizedString(30000), 'Scanning Library')
@@ -131,8 +131,8 @@ def get_movielist():
         for item in jsonobject['result']['movies']:
             percent = float(pc)/float(total_m)*100
             m_title = item.get('title', '')
-            m_year  = str(item.get('year', ''))
-            m_file  = str(item.get('file', ''))
+            m_year  = item.get('year', '')
+            m_file  = item.get('file', '')
             _dialpro.update(int(percent),_addon.getLocalizedString(30015)+"{}"+_addon.getLocalizedString(30016)+"{}".format(pc,total_m),"{} ({})".format(m_title,m_year),)
             pc+=1
             if _dialpro.iscanceled():
