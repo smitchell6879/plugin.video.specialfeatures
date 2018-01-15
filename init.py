@@ -123,7 +123,7 @@ def get_movielist():
     jsonobject = query_db()
     if jsonobject.has_key('result') and jsonobject['result'].has_key('movies'):
         for item in jsonobject['result']['movies']:
-            m_title = item.get('title', '').decode('utf-8')
+            m_title = item.get('title', '')
             totals.append(m_title)
         total_m = len(totals)
         _dialpro.create(_addon.getLocalizedString(30000), 'Scanning Library')
