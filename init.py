@@ -262,6 +262,8 @@ def context():
         return
 
 if __name__ == '__main__':
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
     if len(sys.argv)>1:
         if sys.argv[1] == 'scandb':
             init_db()

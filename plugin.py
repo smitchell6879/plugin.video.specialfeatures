@@ -212,6 +212,8 @@ def router(paramstring):
     else:
         list_moviefolders()
 if __name__ == '__main__':
+    reload(sys)
+    sys.setdefaultencoding('utf-8')
     router(sys.argv[2][1:])
 
 
