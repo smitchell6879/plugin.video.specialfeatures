@@ -28,7 +28,7 @@ class SpecialFeatures:
         self._debug      = "true"
         self._dialog     = xbmcgui.Dialog()
         self._dialpro    = xbmcgui.DialogProgress()
-        # self.movielist   = []
+        self.movielist   = []
         self.totals      = []
         self.cast        = []
         self.sf_extras   = []
@@ -36,7 +36,6 @@ class SpecialFeatures:
 
     def list_moviefolders(self):
         # self.vars()
-        xbmcplugin.setContent(self._handle, 'movies')
         self.movielist      = dbF.query_mfdb()
         for self.item in self.movielist:       
             self._listitem  = xbmcgui.ListItem(label=str(self.item.get('title', '')))
@@ -50,6 +49,7 @@ class SpecialFeatures:
             self._listitem.setCast(self.item.get('cast',''))
             self._listitem.setInfo('video',{'title': str(self.item.get('title', '')), 'year': str(self.item.get('year', '')), 'plot': self.item.get('plot', ''),'path': self.item.get('file',''), 'rating': self.item.get('rating', ''), 'mpaa': self.item.get('mpaa', ''), 'dateadded': self.item.get('dateadded', '')})
             xbmcplugin.addDirectoryItem(self._handle, self.url, self._listitem, self.is_folder)
+        xbmcplugin.setContent(self._handle, 'movies')
         xbmcplugin.addSortMethod(self._handle, xbmcplugin.SORT_METHOD_TITLE_IGNORE_THE )
         xbmcplugin.addSortMethod(self._handle, xbmcplugin.SORT_METHOD_MPAA_RATING )
         xbmcplugin.addSortMethod(self._handle, xbmcplugin.SORT_METHOD_VIDEO_YEAR )
@@ -57,7 +57,7 @@ class SpecialFeatures:
         xbmcplugin.addSortMethod(self._handle, xbmcplugin.SORT_METHOD_DATEADDED  )
         xbmcplugin.endOfDirectory(self._handle)
     def list_specialfeatures(self,category,title):
-        self.vars()
+        # self.vars()
         self.movielist=dbF.query_sfdb(category)
         xbmcplugin.setPluginCategory(self._handle, title)
         xbmcplugin.setContent(self._handle, 'movies')
@@ -129,10 +129,7 @@ class SpecialFeatures:
         self.vars()
         self.params = dict(parse_qsl(paramstring))
         if self.params:
-            if paramstring.strip().split('=')[0]=='window':
-                self.window = self.params.get('window','')
-                self.list_moviefolders()
-            elif self.params['action'] == 'listing':
+            if self.params['action'] == 'listing':
                 self.list_specialfeatures(self.params['category'], self.params['title'])
             elif self.params['action'] == 'play':
                 self.play_video(self.params['video'])
