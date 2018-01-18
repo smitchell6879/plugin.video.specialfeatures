@@ -28,8 +28,6 @@ class dbFunctions:
         self.home       = xbmcgui.Window(10000)
         self.monitor    = xbmc.Monitor()
         self.debug      = "true"
-        self.dbcon      = sqlite3.connect(str(self.dbdir))
-        self.dbcu       = self.dbcon.cursor()
         self.dialog     = xbmcgui.Dialog()
         self.dialpro    = xbmcgui.DialogProgress()
         self.movielist  = []
@@ -38,9 +36,11 @@ class dbFunctions:
         self.sf_extras  = []
         self.item       = ""
     def init_db(self):
+        self.vars()
         if not xbmcvfs.exists(self.dbdir):
             xbmcvfs.mkdir(self.addir)
-        self.vars()
+        self.dbcon      = sqlite3.connect(str(self.dbdir))
+        self.dbcu       = self.dbcon.cursor()
         self.dbcu.execute('CREATE TABLE IF NOT EXISTS movies (m_file TEXT, m_title TEXT, m_year TEXT, m_plot TEXT, m_rating TEXT, m_mpaa TEXT, m_dateadded TEXT)')
         self.dbcu.execute('CREATE TABLE IF NOT EXISTS art (m_file TEXT, m_fanart TEXT, m_poster TEXT)')
         self.dbcu.execute('CREATE TABLE IF NOT EXISTS specialfeatures (m_file TEXT, m_title TEXT, m_path TEXT)')
