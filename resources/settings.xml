@@ -1,15 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <settings>
-	<category label="30001">		
+	<!-- <category label="30001"> -->
+		
+	<!-- </category> -->
+	<category label="30035">
+		<setting label="30019" type="action" action="RunScript(plugin.specialfeatures,scandb)"/>
+		<setting label="30028" type="action" action="RunScript(plugin.specialfeatures,cleandb)"/>
+		<setting type="sep"/>
+		<setting type="lsep" label="30031"/>
+		<setting label="30026" type='bool' id="play_all" default="true"/>
+
+		<setting type="lsep" label="30032"/>
+		<setting label="30029" type='bool' id="clndb" default="true"/>
+
+		<setting type="lsep" label="30033"/>
+		<setting label="30030" type='bool' id="updb" default="true"/>
+
+	</category>
+	<category label="30020">
 		<setting type="lsep" label="30018"/>
 		<setting label="30002" id="extras-folder" type="text" default="Extras"/>
-		<setting label="30019" type="action" action="RunScript(plugin.specialfeatures,scandb)"/>
-		<setting label="30026" type='bool' id="play_all" default="true"/>
-		<setting type="sep"/>
-		<setting type="lsep" label="30020"/>
-		<setting label="30021" type="action" action="RunScript(plugin.specialfeatures,quit)"/>
-		<setting label="30003" type="bool" id="context-menu" default="true" visible="false"/>
+		<setting type="lsep" label="30036"/>
+		<setting label="30021" type="action" action="RunScript(plugin.specialfeatures,quit)" visible="false"/>
+		<setting label="30027" type="bool" id="context-menu" default="true" visible="true"/>
+		<setting type="lsep" label="30037"/>
 		<setting label="30022" type="text" id="excludefilestype"  default="\.(jpg|png|idx|srt|nfo|sub|db|txt|gif|xml)$"/>
-		<setting type="sep"/>
+		<!-- <setting type="sep"/> -->
 	</category>
 </settings>
+
+<!--Updated 011818 -->
