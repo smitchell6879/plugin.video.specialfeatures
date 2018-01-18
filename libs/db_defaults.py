@@ -252,7 +252,7 @@ class dbFunctions:
             self.close()
         else:
             return self.movielist
-    def close():    
+    def close(self):    
         self.dialog.ok(self.addon.getLocalizedString(30003),self.addon.getLocalizedString(30004))
         xbmc.executebuiltin("ActivateWindow("+str(self.window)+")")
     def query_li(self):
