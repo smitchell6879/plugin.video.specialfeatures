@@ -38,9 +38,9 @@ class dbFunctions:
         self.sf_extras  = []
         self.item       = ""
     def init_db(self):
-        self.vars()
         if not xbmcvfs.exists(self.dbdir):
             xbmcvfs.mkdir(self.addir)
+        self.vars()
         self.dbcu.execute('CREATE TABLE IF NOT EXISTS movies (m_file TEXT, m_title TEXT, m_year TEXT, m_plot TEXT, m_rating TEXT, m_mpaa TEXT, m_dateadded TEXT)')
         self.dbcu.execute('CREATE TABLE IF NOT EXISTS art (m_file TEXT, m_fanart TEXT, m_poster TEXT)')
         self.dbcu.execute('CREATE TABLE IF NOT EXISTS specialfeatures (m_file TEXT, m_title TEXT, m_path TEXT)')
