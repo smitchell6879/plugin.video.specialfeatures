@@ -10,12 +10,12 @@ provider-name="smitchell6879">
 <extension point="kodi.context.item">
     <menu id="kodi.core.main">
       <item library="addon.py">
-        <label>Special Features</label>
+        <label>30000</label>
         <visible>String.IsEqual(Window(home).Property("extrasnxt"),true)+String.IsEqual(ListItem.dbtype,movie)</visible>
       </item>
     </menu>
 </extension>
-<extension point="xbmc.service" library="service.py" start="login"/>
+<extension point="xbmc.service" library="service.py" start="[login|startup]"/>
 <extension point="xbmc.python.script" library="init.py"/>
 <extension point="xbmc.python.pluginsource" library="plugin.py">
   <provides>video</provides>
