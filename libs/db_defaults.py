@@ -49,6 +49,7 @@ class dbFunctions:
         return
     def scn_db(self,updb='false'):
         self.cln_db(updb)
+        self.home.setProperty('SF_updateing','true')
         # self.dialog.ok(self.addon.getLocalizedString(30000),self.addon.getLocalizedString(30010))
         self.get_db(updb)
         self.total_m=len(self.movielist)
@@ -151,6 +152,8 @@ class dbFunctions:
                 if updb == 'false':
                     self.dialpro.update(int(self.percent),"Cleaning Database")
                     self.pc+=1
+
+        self.home.clearProperty('SF_updateing')
         if updb == 'false':
             self.dialog.notification(self.addon.getLocalizedString(30000),self.addon.getLocalizedString(30034), xbmcgui.NOTIFICATION_INFO, 1500,False)
         self.log('Database Cleaned')
@@ -303,7 +306,8 @@ class dbFunctions:
         self.handle     = "plugin://plugin.specialfeatures/" 
         return '{0}?{1}'.format(self.handle, urlencode(kwargs))
     def query_mfdb(self):
-        self.init_db()
+        self.init_db()        
+        self.home.setProperty('SF_updateing','true')
         self.dbcu.execute('SELECT * FROM movies')
         self.entry = self.dbcu.fetchall()
         for self.item in self.entry:
@@ -331,16 +335,20 @@ class dbFunctions:
             self.new_item.update({'cast':self.cast})
             self.movielist.append(self.new_item)
         self.total_m=len(self.movielist)
+        self.home.clearProperty('SF_updateing')
         if self.total_m == 0:
             self.scan=self.dialog.yesno(self.addon.getLocalizedString(30000),self.addon.getLocalizedString(30003),self.addon.getLocalizedString(30004))
             if self.scan == 1:
                 xbmc.executebuiltin("RunScript(plugin.specialfeatures,scandb)")
+                self.movielist  = []
+                return self.movielist
             else:
-                return
+                return self.movielist
         else:
             return self.movielist
     def query_sfdb(self,file):
         self.init_db()
+        self.home.setProperty('SF_updateing','true')
         self.dbcu.execute('SELECT * FROM movies WHERE m_file=?', (file,))
         self.entry = self.dbcu.fetchall()
         for self.item in self.entry:
@@ -366,4 +374,5 @@ class dbFunctions:
                 self.cast.append(self.actor)
             self.new_item.update({'cast':self.cast})
             self.movielist.append(self.new_item)
+        self.home.clearProperty('SF_updateing')
         return self.movielist
