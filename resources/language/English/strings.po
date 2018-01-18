@@ -83,7 +83,7 @@ msgid "Folder should be placed in root of the 'Movie' folder."
 msgstr ""
 
 msgctxt "#30019"
-msgid "Scan/Update Library for Special Features"
+msgid "Scan Library"
 msgstr ""
 
 msgctxt "#30020"
@@ -111,11 +111,55 @@ msgid "Play All"
 msgstr ""
 
 msgctxt "#30026"
-msgid "Show Play All in Special Features List"
+msgid "Show Play All"
 msgstr ""
 
 msgctxt "#30027"
-msgid ""
+msgid "Show in Context Menu"
+msgstr ""
+
+msgctxt "#30028"
+msgid "Clean Special Features Database"
+msgstr ""
+
+msgctxt "#30029"
+msgid "Auto Update Special Features Database"
+msgstr ""
+
+msgctxt "#30030"
+msgid "Auto Clean Special Features Database"
+msgstr ""
+
+msgctxt "#30031"
+msgid "Adds Play All button to list when more then one item has been found."
+msgstr ""
+
+msgctxt "#30032"
+msgid "Automatically cleans database when finished cleaning Kodi's Video Library."
+msgstr ""
+
+msgctxt "#30033"
+msgid "Automaticlly updates database when Kodi Video Library is updated."
+msgstr ""
+
+msgctxt "#30034"
+msgid "Database has been cleaned"
+msgstr ""
+
+msgctxt "#30035"
+msgid "Features"
+msgstr ""
+
+msgctxt "#30036"
+msgid "Show Special Features Button in Context if extras are found."
+msgstr ""
+
+msgctxt "#30037"
+msgid "File extensions to be ignore during scan"
+msgstr ""
+
+msgctxt "#30038"
+msgid "Adds all Special Features to a Playlist for continuous playback"
 msgstr ""
 
 msgctxt "#30050"
