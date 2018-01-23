@@ -141,6 +141,10 @@ class dbFunctions:
             if updb == 'false':
                 self.dialpro.create(self.addon.getLocalizedString(30000),"Cleaning Database")
             for self.item in self.entry:
+                if updb == 'false':
+                    if self.dialpro.iscanceled():
+                        xbmc.executebuiltin('ActivateWindow(home)')
+                        return
                 self.m_file = self.item[0]
                 self.dbcu.execute('SELECT * FROM specialfeatures WHERE m_file=?',(self.m_file,))
                 self.sentry = self.dbcu.fetchone()
@@ -155,6 +159,7 @@ class dbFunctions:
 
         self.home.clearProperty('SF_updateing')
         if updb == 'false':
+            xbmc.executebuiltin("Dialog.Close(all)")
             self.dialog.notification(self.addon.getLocalizedString(30000),self.addon.getLocalizedString(30034), xbmcgui.NOTIFICATION_INFO, 1500,False)
         self.log('Database Cleaned')
         return
