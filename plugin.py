@@ -103,36 +103,49 @@ class Bonus:
         xbmcplugin.endOfDirectory(self._handle)
     def maindir(self):
         self.dirvis = 'false'
+        self.size = 0
         self.maindir = list()
+        self.var()
         if showalldir =='true':
             self.maindir.append({'title':'Show All Extras','category':'all'})
             self.dirvis = 'true'
+            self.size = self.size + 1
         if moviedir == 'true':
             self.maindir.append({'title':'Movie Extras','category':'movies'})
             self.dirvis = 'true'
+            self.size = self.size + 1
         if tvshowdir == 'true':
             self.maindir.append({'title':'TV Show Extras','category':'tvshows'})
             self.dirvis = 'true'
+            self.size = self.size + 1
         if self.dirvis == 'false':
             self.chk = dialog.yesno(lang(30000),lang(30067),lang(30068))
             if self.chk == 1:
                 xbmc.executebuiltin('Addon.OpenSettings({})'.format(addonid))
             else:
                 return
-        self.var()
-        try:
+        if self.size == 1:
             for self.item in self.maindir:
-                self.litem      = xbmcgui.ListItem(label="{}".format(self.item.get('title', '')))
-                self.is_folder  = True
-                self.url        = self.get_url(action=self.item.get('category', ''), category=self.item.get('category', ''), title="{}".format(self.item.get('title', '')))
-                self.litem.setProperty('IsPlayable', 'true')
-                xbmcplugin.addDirectoryItem(self._handle, self.url, self.litem, self.is_folder)
-            xbmcplugin.setContent(self._handle, 'videos')
-            xbmcplugin.addSortMethod(self._handle, xbmcplugin.SORT_METHOD_TITLE_IGNORE_THE )
-            xbmcplugin.endOfDirectory(self._handle)
-        except:
-            error("NEED TO UPDATE DATABASE OR ADD MOVIES OR TVSHOWS")
-            return
+                if self.item.get('category','')=='all':
+                        Bonus().folders('movies')
+                if self.item.get('category','')=='movies':
+                        Bonus().folders('movies')
+                if self.item.get('category','')=='tvshows':
+                        Bonus().folders('tvshows')
+        else:
+            try:
+                for self.item in self.maindir:
+                    self.litem      = xbmcgui.ListItem(label="{}".format(self.item.get('title', '')))
+                    self.is_folder  = True
+                    self.url        = self.get_url(action=self.item.get('category', ''), category=self.item.get('category', ''), title="{}".format(self.item.get('title', '')))
+                    self.litem.setProperty('IsPlayable', 'true')
+                    xbmcplugin.addDirectoryItem(self._handle, self.url, self.litem, self.is_folder)
+                xbmcplugin.setContent(self._handle, 'videos')
+                xbmcplugin.addSortMethod(self._handle, xbmcplugin.SORT_METHOD_TITLE_IGNORE_THE )
+                xbmcplugin.endOfDirectory(self._handle)
+            except:
+                error("NEED TO UPDATE DATABASE OR ADD MOVIES OR TVSHOWS")
+                return
     def get_url(self,**kwargs):
         return '{0}?{1}'.format(self._url,urlencode(kwargs))
 class Player:
