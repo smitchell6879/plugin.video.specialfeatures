@@ -239,9 +239,17 @@ msgid "Would You Like to Check Your Setting?"
 msgstr ""
 
 msgctxt "#30069"
-msgid ""
+msgid "Show All Extras"
 msgstr ""
 
 msgctxt "#30070"
-msgid ""
+msgid "Show Movies"
+msgstr ""
+
+msgctxt "#30071"
+msgid "Show TV Shows"
+msgstr ""
+
+msgctxt "#30072"
+msgid "Directories to Choose From"
 msgstr ""
