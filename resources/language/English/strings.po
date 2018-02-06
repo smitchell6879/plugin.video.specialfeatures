@@ -63,11 +63,11 @@ msgid "Library Has Updated Successfully."
 msgstr ""
 
 msgctxt "#30014"
-msgid "You will be taken to the Home Menu."
+msgid ""
 msgstr ""
 
 msgctxt "#30015"
-msgid "Scanning Library "
+msgid "Scanning Library for Special Features "
 msgstr ""
 
 msgctxt "#30016"
@@ -83,7 +83,7 @@ msgid "Folder should be placed in root of the 'Movie' folder."
 msgstr ""
 
 msgctxt "#30019"
-msgid "Scan Library"
+msgid "Scan Library for Specail Features"
 msgstr ""
 
 msgctxt "#30020"
@@ -163,37 +163,85 @@ msgid "Adds all Special Features to a Playlist for continuous playback"
 msgstr ""
 
 msgctxt "#30050"
-msgid ""
+msgid "Scan Library for Multi Disc .strm Files"
 msgstr ""
 
 msgctxt "#30051"
-msgid ""
+msgid "Scanning Library for Mulit Disc"
 msgstr ""
 
 msgctxt "#30052"
-msgid ""
+msgid "MySQL Settings "
 msgstr ""
 
 msgctxt "#30053"
-msgid ""
+msgid "Username"
 msgstr ""
 
 msgctxt "#30054"
-msgid ""
+msgid "Password"
 msgstr ""
 
 msgctxt "#30055"
-msgid ""
+msgid "Server Address"
 msgstr ""
 
 msgctxt "#30056"
-msgid ""
+msgid "Port"
 msgstr ""
 
 msgctxt "#30057"
-msgid ""
+msgid "Use MySql for centralize database"
 msgstr ""
 
 msgctxt "#30058"
+msgid "Specail Features"
+msgstr ""
+
+msgctxt "#30059"
+msgid "Updating Library"
+msgstr ""
+
+msgctxt "#30060"
+msgid "Cleaning Special Features Database"
+msgstr ""
+
+msgctxt "#30061"
+msgid "Updating Special Features library"
+msgstr ""
+
+msgctxt "#30062"
+msgid "Scanning for special features"
+msgstr ""
+
+msgctxt "#30063"
+msgid "Special Features Library Updated"
+msgstr ""
+
+msgctxt "#30064"
+msgid "Special Features Library has been cleaned"
+msgstr ""
+
+msgctxt "#30065"
+msgid "Oops! You Haven't Added Any Movies to the Library Yet."
+msgstr ""
+
+msgctxt "#30066"
+msgid "Once You Have Added Movies to the Kodi Library Try Again."
+msgstr ""
+
+msgctxt "#30067"
+msgid "Oops! You Have Turned Off All Directories"
+msgstr ""
+
+msgctxt "#30068"
+msgid "Would You Like to Check Your Setting?"
+msgstr ""
+
+msgctxt "#30069"
+msgid ""
+msgstr ""
+
+msgctxt "#30070"
 msgid ""
 msgstr ""

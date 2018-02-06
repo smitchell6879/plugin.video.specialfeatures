@@ -4,28 +4,41 @@
 		
 	<!-- </category> -->
 	<category label="30035">
+		<!-- <setting label="TEST" type="action" action="RunScript(plugin.specialfeatures,test)"/> -->
 		<setting label="30019" type="action" action="RunScript(plugin.specialfeatures,scandb)"/>
+		<!-- <setting label="30050" type="action" action="RunScript(plugin.specialfeatures,scandbmd)"/> -->
 		<setting label="30028" type="action" action="RunScript(plugin.specialfeatures,cleandb)"/>
 		<setting type="sep"/>
 		<setting type="lsep" label="30031"/>
-		<setting label="30026" type='bool' id="play_all" default="true"/>
+		<setting label="30026" type='bool' id="playall" default="true"/>
+		<setting label="Show All Extras" type='bool' id="showalldir" default="true"/>
+		<setting label="Show Movies" type='bool' id="moviedir" default="true"/>
+		<setting label="Show TV Shows" type='bool' id="tvshowdir" default="true"/>
 
-		<setting type="lsep" label="30032"/>
-		<setting label="30029" type='bool' id="clndb" default="true"/>
+		<!-- <setting type="lsep" label="30032"/> -->
+		<setting label="30029" type='bool' id="aclndb" visible="false" default="false"/>
 
-		<setting type="lsep" label="30033"/>
-		<setting label="30030" type='bool' id="updb" default="true"/>
+		<!-- <setting type="lsep" label="30033"/> -->
+		<setting label="30030" type='bool' id="aupdb" visible="false" default="false"/>
 
 	</category>
 	<category label="30020">
 		<setting type="lsep" label="30018"/>
-		<setting label="30002" id="extras-folder" type="text" default="Extras"/>
+		<setting label="30002" id="folder" type="text" default="Extras"/>
 		<setting type="lsep" label="30036"/>
-		<setting label="30021" type="action" action="RunScript(plugin.specialfeatures,quit)" visible="false"/>
-		<setting label="30027" type="bool" id="context-menu" default="true" visible="true"/>
+		<!-- <setting label="30021" type="action" action="RunScript(plugin.specialfeatures,quit)" visible="false"/>
+		<setting label="30027" type="bool" id="sfmenu" default="true" visible="true"/> -->
 		<setting type="lsep" label="30037"/>
-		<setting label="30022" type="text" id="excludefilestype"  default="\.(jpg|png|idx|srt|nfo|sub|db|txt|gif|xml)$"/>
-		<!-- <setting type="sep"/> -->
+		<setting label="30022" type="text" id="excludetypes"  default="\.(jpg|png|idx|srt|nfo|sub|db|txt|gif|xml)$"/>
+		<!-- <setting type="sep"/>
+		<setting type="lsep" label="30052"/> -->
+	</category>
+	<category label="30052">
+		<setting label="30057" type="bool" id="mysql" default="false"/>
+		<setting label="30053" type="text" id="sqluser" default="root"/>
+		<setting label="30054" type="text" id="sqlpass" default=""/>
+		<setting label="30054" type="ipaddress" id="sqlip" default="127.0.0.1"/>
+		<setting label="30056" type="number" id="sqlport" default="3306"/>
 	</category>
 </settings>
 
