@@ -1,8 +1,6 @@
-011818  Reworked all code to be more Streamline.
-        Add features of Auto Clean/ Auto Scan.
-        Improved overall functionality.
-        Possabliy fixes playlist load lag... work instantly for me @ least.
-
+020518  Added Python 3 Support.
+		Added Mysql Support.
+		Temp. remove service that controlled context menu and information veiw.
 011418  Added Krypton Support. rolledback .json to 8.0
         Added Play All List option to the Special Features List.
         Option in settings to turn it off 

@@ -1,234 +1,169 @@
-import os
-import re
-import sys
-import sqlite3
-import time
-from urllib import urlencode
-from urlparse import parse_qsl
-import xbmcaddon
-import xbmcgui
-import xbmcplugin
-import xbmcvfs
-import xml.etree.ElementTree as ET 
-from libs.db_defaults import dbFunctions
-import json as simplejson
-
-dbF=dbFunctions()
-
-
-class SpecialFeatures:
-    def vars(self):
-        self._url        = sys.argv[0]
-        self._handle     = int(sys.argv[1])
-        self._addon_dir  = xbmc.translatePath('special://userdata/addon_data/plugin.specialfeatures/')
-        self._addon_set  = xbmc.translatePath('special://userdata/addon_data/plugin.specialfeatures/settings.xml')
-        self._db_dir     = xbmc.translatePath('special://userdata/addon_data/plugin.specialfeatures/specialfeatures.db')
-        self._addon      = xbmcaddon.Addon()
-        self._play       = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
-        self._debug      = "true"
-        self._dialog     = xbmcgui.Dialog()
-        self._dialpro    = xbmcgui.DialogProgress()
-        self.movielist   = []
-        self.totals      = []
-        self.cast        = []
-        self.sf_extras   = []
-        self.item        = ""
-
-    def list_moviefolders(self):
-        # self.vars()
-        self.movielist      = dbF.query_mfdb()
-        for self.item in self.movielist:       
-            self._listitem  = xbmcgui.ListItem(label=str(self.item.get('title', '')))
-            self.art        = self.item.get('art','')
-            self.fanart     = self.art.get('fanart','')
-            self.poster     = self.art.get('poster', '')
-            self.url        = self.get_url( title=str(self.item.get('title', '')), action='listing', category=str(self.item.get('file', '')))
-            self.is_folder  = True
-            self._listitem.setArt({'fanart': self.fanart, 'poster': self.poster})
-            self._listitem.setProperty('IsPlayable', 'true')
-            self._listitem.setCast(self.item.get('cast',''))
-            self._listitem.setInfo('video',{'title': str(self.item.get('title', '')), 'year': str(self.item.get('year', '')), 'plot': self.item.get('plot', ''),'path': self.item.get('file',''), 'rating': self.item.get('rating', ''), 'mpaa': self.item.get('mpaa', ''), 'dateadded': self.item.get('dateadded', '')})
-            xbmcplugin.addDirectoryItem(self._handle, self.url, self._listitem, self.is_folder)
-        xbmcplugin.setContent(self._handle, 'movies')
-        xbmcplugin.addSortMethod(self._handle, xbmcplugin.SORT_METHOD_TITLE_IGNORE_THE )
-        xbmcplugin.addSortMethod(self._handle, xbmcplugin.SORT_METHOD_MPAA_RATING )
-        xbmcplugin.addSortMethod(self._handle, xbmcplugin.SORT_METHOD_VIDEO_YEAR )
-        xbmcplugin.addSortMethod(self._handle, xbmcplugin.SORT_METHOD_VIDEO_RATING )
-        xbmcplugin.addSortMethod(self._handle, xbmcplugin.SORT_METHOD_DATEADDED  )
-        xbmcplugin.endOfDirectory(self._handle)
-    def list_specialfeatures(self,category,title):
-        # self.vars()
-        self.movielist=dbF.query_sfdb(category)
-        xbmcplugin.setPluginCategory(self._handle, title)
-        xbmcplugin.setContent(self._handle, 'movies')
-        for self.item in self.movielist:     
-            self.art        = self.item.get('art','')
-            self.fanart     = self.art.get('fanart','')
-            self.poster     = self.art.get('poster', '')
-            self.year       = self.item.get('year','')
-            self.plot       = self.item.get('plot','')
-            self.cast       = self.item.get('cast','')
-            self.path       = self.item.get('file','')
-            self.rating     = self.item.get('rating','')
-            self.mpaa       = self.item.get('mpaa','')
-            self.dateadded  = self.item.get('dateadded','')
-            self.sf_extras  = self.item.get('sf_extras', '')
-            for self.item in self.sf_extras:
-                self.title  = self.item.get('sf_title','')
-                self.video  = self.item.get('sf_path','')
-                self._listitem = xbmcgui.ListItem(label=title)
-                self._listitem.setArt({'fanart': self.fanart, 'poster': self.poster})
-                self._listitem.setProperty('IsPlayable', 'true')
-                self._listitem.setCast(self.cast)
-                self._listitem.setInfo('video',{'title':self.title, 'year': self.year, 'plot': self.plot, 'path':self.path, 'rating':self.rating, 'mpaa':self.mpaa, 'dateadded':self.dateadded})
+from lib.database import *
+from lib.sys_init import *
+class Router:
+    def __init__(self,args):
+        info("plugin directing routes")
+        self.router(args[2][1:])
+    def router(self,params):
+        self.params = dict(parse_qsl(params))
+        if self.params:
+            if self.params['action']=='bonus':
+                Bonus().files(self.params['category'], self.params['title'])
+            elif self.params['action']=='play':
+                Player().play_video(self.params['video'])
+            elif self.params['action']=='playall':
+                Player().playlist(self.params['category'])
+            elif self.params['action']=='all':
+                Bonus().folders('all')
+            elif self.params['action']=='movies':
+                Bonus().folders('movies')
+            elif self.params['action']=='tvshows':
+                Bonus().folders('tvshows')
+            else:
+                raise error('Invalid params:{0}!'.format(params))
+        else:
+            Bonus().maindir()
+            # Bonus().folders()
+class Bonus:
+    def var(self):
+        self._url           = sys.argv[0]
+        self._handle        = int(sys.argv[1])
+    def item_var(self):
+        self.art            = self.item.get('art','')
+        self.fanart         = self.art.get('fanart','')
+        self.poster         = self.art.get('poster', '')
+        self.year           = self.item.get('year','')
+        self.plot           = self.item.get('plot','')
+        self.cast           = self.item.get('cast','')
+        self.path           = self.item.get('file','')
+        self.rating         = self.item.get('rating','')
+        self.mpaa           = self.item.get('mpaa','')
+        self.dateadded      = self.item.get('dateadded','')
+    def constant(self):
+        self.litem.setArt({'fanart': self.fanart, 'poster': self.poster})
+        self.litem.setCast(self.item.get('cast',''))
+        self.litem.setInfo('video',{'title': "{}".format(self.item.get('title', '')), 'year': "{}".format(self.item.get('year', '')), 'plot': self.item.get('plot', ''),'path': self.item.get('file',''), 'rating': self.item.get('rating', ''), 'mpaa': self.item.get('mpaa', ''), 'dateadded': self.item.get('dateadded', '')})
+    def folders(self,listing):
+        self.var()
+        self.folders = list()
+        if listing == 'all':
+            self.folders = VIEWS().build_folders()
+        if listing == 'movies':
+            self.folders = VIEWS().build_folders()
+        if listing == 'tvshows':
+            return
+        try:
+            for self.item in self.folders:
+                self.litem      = xbmcgui.ListItem(label="{}".format(self.item.get('title', '')))
+                self.item_var()
+                self.constant()
+                self.is_folder  = True
+                self.url        = self.get_url(action='bonus', category=self.item.get('category', ''), title="{}".format(self.item.get('title', '')))
+                self.litem.setProperty('IsPlayable', 'true')
+                xbmcplugin.addDirectoryItem(self._handle, self.url, self.litem, self.is_folder)
+            xbmcplugin.setContent(self._handle, 'movies')
+            xbmcplugin.addSortMethod(self._handle, xbmcplugin.SORT_METHOD_TITLE_IGNORE_THE )
+            xbmcplugin.addSortMethod(self._handle, xbmcplugin.SORT_METHOD_MPAA_RATING )
+            xbmcplugin.addSortMethod(self._handle, xbmcplugin.SORT_METHOD_VIDEO_YEAR )
+            xbmcplugin.addSortMethod(self._handle, xbmcplugin.SORT_METHOD_VIDEO_RATING )
+            xbmcplugin.addSortMethod(self._handle, xbmcplugin.SORT_METHOD_DATEADDED  )
+            xbmcplugin.endOfDirectory(self._handle)
+        except:
+            error("NEED TO UPDATE DATABASE OR ADD MOVIES")
+            return
+    def files(self,category,title):
+        for self.item in VIEWS().build_files(category):
+            self.litem = xbmcgui.ListItem(label=title)
+            self.var()
+            self.item_var()
+            self.bonus  = self.item.get('bonus', '')
+            for self.item in self.bonus:
+                self.title  = self.item.get('b_title','')
+                self.video  = self.item.get('b_path','')
+                self.litem.setProperty('IsPlayable', 'true')
+                # self.constant()
+                self.litem.setArt({'fanart': self.fanart, 'poster': self.poster})
+                self.litem.setCast(self.cast)
+                self.litem.setInfo('video',{'title':self.title, 'year': self.year, 'plot': self.plot, 'path':self.path, 'rating':self.rating, 'mpaa':self.mpaa, 'dateadded':self.dateadded})
                 self.url = self.get_url(action='play', video=self.video)
                 self.is_folder = False
-                xbmcplugin.addDirectoryItem(self._handle, self.url, self._listitem, self.is_folder)
-        if len(self.sf_extras) > 1:
-            if self._addon.getSetting("play_all") == 'true':
-                self._playall = xbmcgui.ListItem(label=self._addon.getLocalizedString(30025))
+                xbmcplugin.setPluginCategory(self._handle, title)
+                xbmcplugin.setContent(self._handle, 'movies')
+                xbmcplugin.addDirectoryItem(self._handle, self.url, self.litem, self.is_folder)
+        if len(self.bonus) > 1:
+            if playall == 'true':
+                self._playall = xbmcgui.ListItem(label=lang(30025))
                 self._playall.setArt({'fanart': self.fanart, 'poster': self.poster})
                 self._playall.setProperty('IsPlayable', 'true')
                 self._playall.setCast(self.cast)
-                self._playall.setInfo('video',{'year': self.year, 'plot':self._addon.getLocalizedString(30038), 'path':self.path, 'rating':self.rating, 'mpaa':self.mpaa, 'dateadded':self.dateadded})
+                self._playall.setInfo('video',{'year': self.year, 'plot':lang(30038), 'path':self.path, 'rating':self.rating, 'mpaa':self.mpaa, 'dateadded':self.dateadded})
                 self.url = self.get_url(action='playall', category=category)
                 xbmcplugin.addDirectoryItem(self._handle,self.url, self._playall, self.is_folder)
         xbmcplugin.addSortMethod(self._handle, xbmcplugin.SORT_METHOD_TITLE_IGNORE_THE )
         xbmcplugin.endOfDirectory(self._handle)
+    def maindir(self):
+        self.dirvis = 'false'
+        self.maindir = list()
+        if showalldir =='true':
+            self.maindir.append({'title':'Show All Extras','category':'all'})
+            self.dirvis = 'true'
+        if moviedir == 'true':
+            self.maindir.append({'title':'Movie Extras','category':'movies'})
+            self.dirvis = 'true'
+        if tvshowdir == 'true':
+            self.maindir.append({'title':'TV Show Extras','category':'tvshows'})
+            self.dirvis = 'true'
+        if self.dirvis == 'false':
+            self.chk = dialog.yesno(lang(30000),lang(30067),lang(30068))
+            if self.chk == 1:
+                xbmc.executebuiltin('Addon.OpenSettings({})'.format(addonid))
+            else:
+                return
+        self.var()
+        try:
+            for self.item in self.maindir:
+                self.litem      = xbmcgui.ListItem(label="{}".format(self.item.get('title', '')))
+                self.is_folder  = True
+                self.url        = self.get_url(action=self.item.get('category', ''), category=self.item.get('category', ''), title="{}".format(self.item.get('title', '')))
+                self.litem.setProperty('IsPlayable', 'true')
+                xbmcplugin.addDirectoryItem(self._handle, self.url, self.litem, self.is_folder)
+            xbmcplugin.setContent(self._handle, 'videos')
+            xbmcplugin.addSortMethod(self._handle, xbmcplugin.SORT_METHOD_TITLE_IGNORE_THE )
+            xbmcplugin.endOfDirectory(self._handle)
+        except:
+            error("NEED TO UPDATE DATABASE OR ADD MOVIES OR TVSHOWS")
+            return
     def get_url(self,**kwargs):
         return '{0}?{1}'.format(self._url,urlencode(kwargs))
+class Player:
     def play_video(self,path):
+        self._handle        = int(sys.argv[1])
         self.play_item = xbmcgui.ListItem(path=path)
         xbmcplugin.setResolvedUrl(self._handle, True, listitem=self.play_item)
     def playlist(self,category):
-        self.vars()
-        self._play.clear()
-        self.movielist = dbF.query_sfdb(category)
-        for self.item in self.movielist:     
-            self.art       = self.item.get('art','')
-            self.fanart    = self.art.get('fanart','')
-            self.poster    = self.art.get('poster', '')
-            self.year      = self.item.get('year','')
-            self.plot      = self.item.get('plot','')
-            self.cast      = self.item.get('cast','')
-            self.path      = self.item.get('file','')
-            self.rating    = self.item.get('rating','')
-            self.mpaa      = self.item.get('mpaa','')
-            self.dateadded = self.item.get('dateadded','')
-            self.sf_extras = self.item.get('sf_extras', '')
-            for self.item in self.sf_extras:
-                self.title=self.item.get('sf_title','')
-                self.video=self.item.get('sf_path','')
-                self._listitem = xbmcgui.ListItem(label=self.title)
-                self._listitem.setArt({'fanart': self.fanart, 'poster': self.poster})
-                self._listitem.setCast(self.cast)
-                self._listitem.setInfo('video',{'title':self.title, 'year': self.year, 'plot': self.plot, 'path':self.path, 'rating':self.rating, 'mpaa':self.mpaa, 'dateadded':self.dateadded})
-                self._play.add(url=self.video,listitem=self._listitem)
-        xbmc.Player().play(self._play)
-    def router(self,paramstring):
-        self.vars()
-        self.params = dict(parse_qsl(paramstring))
-        if self.params:
-            if self.params['action'] == 'listing':
-                self.list_specialfeatures(self.params['category'], self.params['title'])
-            elif self.params['action'] == 'play':
-                self.play_video(self.params['video'])
-            elif self.params['action'] == 'playall':
-                self.playlist(self.params['category'])
-            else:
-                raise ValueError('Invalid paramstring: {0}!'.format(paramstring))
-        else:
-            self.list_moviefolders()
+        play.clear()
+        for self.item in VIEWS().build_files(category):
+            self.art            = self.item.get('art','')
+            self.fanart         = self.art.get('fanart','')
+            self.poster         = self.art.get('poster', '')
+            self.year           = self.item.get('year','')
+            self.plot           = self.item.get('plot','')
+            self.cast           = self.item.get('cast','')
+            self.path           = self.item.get('file','')
+            self.rating         = self.item.get('rating','')
+            self.mpaa           = self.item.get('mpaa','')
+            self.dateadded      = self.item.get('dateadded','')
+            self.bonus = self.item.get('bonus', '')
+            for self.item in self.bonus:
+                self.title=self.item.get('b_title','')
+                self.video=self.item.get('b_path','')
+                self.litem = xbmcgui.ListItem(label=self.title)
+                self.litem.setArt({'fanart': self.fanart, 'poster': self.poster})
+                self.litem.setCast(self.cast)
+                self.litem.setInfo('video',{'title':self.title, 'year': self.year, 'plot': self.plot, 'path':self.path, 'rating':self.rating, 'mpaa':self.mpaa, 'dateadded':self.dateadded})
+                play.add(url=self.video,listitem=self.litem)
+        xbmc.Player().play(play)          
 if __name__ == '__main__':
-    dbF.endcoding()
-    SpecialFeatures().router(sys.argv[2][1:])
-
-
-#### NOTES #####
-# "title","genre","year","rating","director","trailer","tagline","plot","plotoutline",
-# "originaltitle","lastplayed","playcount","writer","studio","mpaa","cast","country",
-# "imdbnumber","runtime","set","showlink","streamdetails","top250","votes","fanart",
-# "thumbnail","file","sorttitle","resume","setid","dateadded","tag","art","userrating",
-# "ratings","premiered","uniqueid"
-#
-#.encode('ascii', 'ignore')
-
-
-# def init_db():
-#     if not xbmcvfs.exists(_db_dir):
-#         xbmcvfs.mkdir(_addon_dir)
-#     global _db_con
-#     _db_con = sqlite3.connect(str(_db_dir))
-#     global _db_cu
-#     _db_cu  = _db_con.cursor()
-#     _db_cu.execute('CREATE TABLE IF NOT EXISTS movies (m_fileb TEXT, m_title TEXT, m_year TEXT, m_plot TEXT, m_rating TEXT, m_mpaa TEXT, m_dateadded TEXT)')
-#     _db_cu.execute('CREATE TABLE IF NOT EXISTS art (m_tfile TEXT, m_fanart TEXT, m_poster TEXT)')
-#     _db_cu.execute('CREATE TABLE IF NOT EXISTS specialfeatures (m_tfile TEXT, m_title TEXT, m_path TEXT)')
-#     _db_cu.execute('CREATE TABLE IF NOT EXISTS actors (m_tfile TEXT, m_name TEXT, m_thmbnail TEXT, m_role TEXT, m_order TEXT)')
-#     _db_con.commit()
-#     return
-# def query_sdb():
-#     dbF.init_db()
-#     _db_cu.execute('SELECT * FROM movies')
-#     _entry = _db_cu.fetchall()
-#     for item in _entry:
-#         m_file=item[0]
-#         new_item={'file':item[0], 'title':item[1], 'year':item[2], 'plot':item[3], 'rating':[4], 'mpaa':[5], 'dateadded':[6]}
-#         _db_cu.execute('SELECT * FROM art WHERE m_file=?', (m_file,))
-#         _entry = _db_cu.fetchall()
-#         for item in _entry:
-#             art={'fanart':item[1], 'poster':item[2]}
-#             new_item.update({'art':art})
-#         _db_cu.execute('SELECT * FROM specialfeatures WHERE m_file=?', (m_file,))
-#         _entry = _db_cu.fetchall()
-#         for item in _entry:
-#             sf_extras.append({'sf_title': item[1], 'sf_path': item[2]})
-#         new_item.update({'sf_extras':sf_extras})
-#         _db_cu.execute('SELECT * FROM actors WHERE m_file=?', (m_file,))
-#         _entry = _db_cu.fetchall()
-#         for item in _entry:
-#             actor={'name'       : item[1],
-#                    'thumbnail'  : item[2],
-#                    'role'       : item[3],
-#                    'order'      : item[4],}            
-#             cast.append(actor)
-#         new_item.update({'cast':cast})
-#         movielist.append(new_item)
-#     total_m=len(movielist)
-#     if total_m == 0:
-#         close()
-#     else:
-#         return movielist
-# def query_sfdb(file):
-#     init_db()
-#     m_file=file
-#     _db_cu.execute('SELECT * FROM movies WHERE m_file=?', (m_file,))
-#     _entry = _db_cu.fetchall()
-#     for item in _entry:
-#         new_item={'file':m_file, 'title':item[1], 'year':item[2], 'plot':item[3], 'rating':[4], 'mpaa':[5], 'dateadded':[6]}
-#         _db_cu.execute('SELECT * FROM art WHERE m_file=?', (m_file,))
-#         _entry = _db_cu.fetchall()
-#         for item in _entry:
-#             art={'fanart':item[1], 'poster':item[2]}
-#             new_item.update({'art':art})
-#         _db_cu.execute('SELECT * FROM specialfeatures WHERE m_file=?', (m_file,))
-#         _entry = _db_cu.fetchall()
-#         for item in _entry:
-#             sf_extras.append({'sf_title': item[1], 'sf_path': item[2]})
-#         new_item.update({'sf_extras':sf_extras})
-#         _db_cu.execute('SELECT * FROM actors WHERE m_file=?', (m_file,))
-#         _entry = _db_cu.fetchall()
-#         for item in _entry:
-#             actor={'name'       : item[1],
-#                    'thumbnail'  : item[2],
-#                    'role'       : item[3],
-#                    'order'      : item[4],}            
-#             cast.append(actor)
-#         new_item.update({'cast':cast})
-#         movielist.append(new_item)
-#     return movielist
-# def close():    
-#         scan=_dialog.yesno(_addon.getLocalizedString(30000),_addon.getLocalizedString(30003),_addon.getLocalizedString(30004))
-#         if scan == 1:
-#             xbmc.executebuiltin("RunScript(plugin.specialfeatures,scandb)")
-
+    # encoding()
+    # UPDATEDB()
+    Router(sys.argv)

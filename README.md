@@ -58,3 +58,9 @@ You can use this in a widget simply with:
 plugin://plugin.specialfeatures/
 ```
 This will return a list of movies with extras, the same thing you get when selecting the addon.
+
+############################################################################################
+Support added for MYSQL SERVER has been tested on MySQL 5.7
+
+Assuming you already have MySQL setup and running simply go to addon settings
+MySQL tab and enter your information and run the addon simple as that.

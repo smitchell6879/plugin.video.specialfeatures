@@ -1,8 +1,8 @@
 import xbmc
 import xbmcgui
 import time
-from libs.lib_monitor import libMonitor
-from libs.db_defaults import dbFunctions
+from lib.lib_monitor import libMonitor
+from lib.db_defaults import dbFunctions
 
 class li_main:
     def __init__(self):
