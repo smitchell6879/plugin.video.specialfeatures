@@ -11,9 +11,12 @@
 		<setting type="sep"/>
 		<setting type="lsep" label="30031"/>
 		<setting label="30026" type='bool' id="playall" default="true"/>
-		<setting label="Show All Extras" type='bool' id="showalldir" default="true"/>
-		<setting label="Show Movies" type='bool' id="moviedir" default="true"/>
-		<setting label="Show TV Shows" type='bool' id="tvshowdir" default="false"/>
+		<setting type="sep"/>
+		<setting type="lsep" label="30072"/>
+		<setting label="30069" type='bool' id="showalldir" default="true"/>
+		<setting label="30070" type='bool' id="moviedir" default="true"/>
+		<setting label="30071" type='bool' id="tvshowdir" default="false"/>
+		<setting type="lsep" label="TV Shows Do NOT Work ATM"/>
 
 		<!-- <setting type="lsep" label="30032"/> -->
 		<setting label="30029" type='bool' id="aclndb" visible="false" default="false"/>
