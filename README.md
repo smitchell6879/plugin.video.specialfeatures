@@ -50,14 +50,6 @@ RECOMMEND ADVANCED USER SETTING
 ```
 ###########################################################################################
 
-This plugin can be called when a listitem is selected using RunScript(plugin.specialfeatures,listitem)
-
-You can use this in a widget simply with:
-
-```
-plugin://plugin.specialfeatures/
-```
-This will return a list of movies with extras, the same thing you get when selecting the addon.
 
 ############################################################################################
 Support added for MYSQL SERVER has been tested on MySQL 5.7
