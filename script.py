@@ -1,67 +1,49 @@
 from lib.sys_init import *
-from lib.database import *
+from lib.iteration import *
+from lib.importexport import *
 
+
+class Routines:
+    def updateDB(self):
+        query = 'movies'
+        query2 = 'tvshows'
+        note(txt=lang(30050))
+        resultFILTER().router(query)
+        resultFILTER().router(query2)
+        dbEnterExit().initDb('update')
+        exit()
+    def cleanDb(self):
+        dbEnterExit().initDb('clean')
+    def editInfo(self):
+        dbEnterExit().quckEdit()
+    def exportDb(self):
+        dbEnterExit().initDb('export')
+    def listItem(self):
+        self.url = self.get_url(directory='files', item=xbmc.getInfoLabel("ListItem.FileNameAndPath"), category=xbmc.getInfoLabel("ListItem.DBTYPE"))
+        xbmc.executebuiltin('ActivateWindow(videos,{},return)'.format(self.url))    
+    def get_url(self,**kwargs):
+        return '{0}?{1}'.format("plugin://plugin.specialfeatures/",urlencode(kwargs))
+
+
+   
 
 
 if __name__ == '__main__':
+    r = Routines()
     if sys.version_info[0]<3:
         encoding()
     if len(sys.argv)>1:
         if sys.argv[1] == 'scandb':
-            UPDATEDB()
-        # elif sys.argv[1] == 'listitem':
-        #     li_main().__init__()
+            r.updateDB()
+        elif sys.argv[1] == 'listitem':
+            r.listItem()
         elif sys.argv[1] == 'cleandb':
-            CLEANUP()
-        # elif sys.argv[1] == 'scandbmd':
-        #     dbFunctions().scn_dbmd()
-        # elif sys.argv[1] == 'test':
-        #     SpecialFeatures()
-        #     # dbFunctions().test()
-
+            r.cleanDb()
+        elif sys.argv[1] == 'export':
+            r.exprtDb()
+        elif sys.argv[1] == 'editinfo':
+            r.editInfo()
+        elif sys.argv[1] == 'test':
+            text(xbmc.getInfoLabel("ListItem.DBTYPE"))
     else:
         xbmc.executebuiltin('Addon.OpenSettings({})'.format(addonid))
-
-# def context():
-#     addon_data=xbmcvfs.exists(_addon_set)
-#     status=_addon.getSetting("context-menu")
-#     if status == "true":
-#         status=_addon.getLocalizedString(30005)
-#         yes=_addon.getLocalizedString(30008)
-#     else:
-#         status=_addon.getLocalizedString(30007)
-#         yes=_addon.getLocalizedString(30006)
-#     menu=_dialog.yesno(_addon.getLocalizedString(30009),_addon.getLocalizedString(30023)+" "+"{}".format(status),yeslabel=yes,nolabel=_addon.getLocalizedString(30024)) 
-    
-#     if status == _addon.getLocalizedString(30005) and menu == 1:
-#         if addon_data:
-#             read = ET.parse(_addon_set)
-#             line = read.getroot()
-#             for line in line:
-#                 l = line.attrib
-#                 l = l.get('id')
-#                 if l == 'context-menu':
-#                     li=line.text
-#                     if li == 'true':
-#                         # line.text = "{}".format('false')
-#                         # read.write(_addon_set)
-#                         _addon.setSetting(id='context-menu', value='false')
-#                         _dialog.ok(_addon.getLocalizedString(30000),_addon.getLocalizedString(30017)) 
-#                         return
-            
-#     elif status == _addon.getLocalizedString(30007) and menu == 1:
-#         if addon_data:
-#             read = ET.parse(_addon_set)
-#             line = read.getroot()
-#             for line in line:
-#                 l = line.attrib
-#                 l = l.get('id')
-#                 if l == 'context-menu':
-#                     li=line.text
-#                     if li == 'false':
-#                         _addon.setSettingBool(id='context-menu',value=1)
-#                         _dialog.ok(_addon.getLocalizedString(30000),_addon.getLocalizedString(30017)) 
-
-#                         return
-#     else:
-#         return

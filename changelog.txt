@@ -1,6 +1,10 @@
-020518  Added Python 3 Support.
-		Added Mysql Support.
-		Temp. remove service that controlled context menu and information veiw.
+021618  Added support for tv show extras
+		Added Show all option
+		Add .sfnfo Support import/export
+		Added .sfnfo editor to context menu
+		Added Service back for information view 
+020518  Added Mysql Support.
+		Temp. remove service that controlled context menu and information view.
 011418  Added Krypton Support. rolledback .json to 8.0
         Added Play All List option to the Special Features List.
         Option in settings to turn it off 

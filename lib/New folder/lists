@@ -1,0 +1,37 @@
+
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: art___________________________________________dic
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: fanart_________________________________________________x
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: resume_____________________________________________________x keep in mind for other history 
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: thumbnail__________________________________________________________x
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: streamdetails_____________________________________________________________x
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: plotoutline______________________________________________________________x
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: bonus_______________________________________________________________x
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: showlink_____________________________________________________________________________________________x
+
+
+
+
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: lastplayed__________________________________________________x
+
+
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: cast_____________________________________dic
+
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: playcount_____________________________________________________________________________x
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: runtime____________________________________________________________________________x
+
+
+
+
+
+title TEXT, mpaa TEXT, tagline TEXT, file TEXT, year TEXT, trailer TEXT, plot TEXT, top250 TEXT, sorttitle TEXT, premiered TEXT, originaltitle TEXT, dateadded TEXT, movieid TEXT, imdbnumber TEXT, label TEXT, setid TEXT, set TEXT, votes TEXT, rating TEXT, userrating TEXT
+
+
+
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: tag______________________________list
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: genre_________________________list
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: country______________________________list
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: director_________________list
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: studio_____________________________list
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: uniqueid______________________________________________________{tmdb,imdb}
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: ratings_____________________________________________dic imdb,default, rating votes themovidb
+06:18:50.731 T:3444    INFO: plugin.specialfeatures: writer___________________list

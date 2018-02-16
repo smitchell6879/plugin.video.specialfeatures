@@ -4,252 +4,200 @@
 msgid ""
 msgstr ""
 
-#######################################################
+####################################################
 
 msgctxt "#30000"
 msgid "Special Features"
 msgstr ""
+
+####################################################
 
 msgctxt "#30001"
 msgid "General"
 msgstr ""
 
 msgctxt "#30002"
-msgid "Folder Name"
+msgid "Advanced Settings"
 msgstr "
 
 msgctxt "#30003"
-msgid "Oops! You Haven't Added Any Special Features"
+msgid "Database Settings"
 msgstr "
 
-msgctxt "#30004"
-msgid "Would You Like to Scan Your Library Now?"
-msgstr ""
-
-msgctxt "#30005"
-msgid "Enabled"
-msgstr ""
-
-msgctxt "#30006"
-msgid "Enable"
-msgstr ""
-
-msgctxt "#30007"
-msgid "Disabled"
-msgstr ""
-
-msgctxt "#30008"
-msgid "Disable"
-msgstr ""
-
-msgctxt "#30009"
-msgid "Special Features - Context Menu Options"
-msgstr ""
+####################################################
 
 msgctxt "#30010"
-msgid "Pausing Special Features Service to Begin Updating..."
+msgid "Scan Library for Special Features"
 msgstr ""
 
 msgctxt "#30011"
-msgid " Movies Have Been Found to Have Special Features."
-msgstr ""
-
-msgctxt "#30012"
-msgid "Updating Library 0 out of "
-msgstr ""
-
-msgctxt "#30013"
-msgid "Library Has Updated Successfully."
-msgstr ""
-
-msgctxt "#30014"
-msgid ""
-msgstr ""
-
-msgctxt "#30015"
-msgid "Scanning Library for Special Features "
-msgstr ""
-
-msgctxt "#30016"
-msgid " out of "
-msgstr ""
-
-msgctxt "#30017"
-msgid "Please Press OK and Close the Setting Menu for the Settings to Take Effect."
-msgstr ""
-
-msgctxt "#30018"
-msgid "Folder should be placed in root of the 'Movie' folder."
-msgstr ""
-
-msgctxt "#30019"
-msgid "Scan Library for Specail Features"
-msgstr ""
-
-msgctxt "#30020"
-msgid "Advanced Setting"
-msgstr ""
-
-msgctxt "#30021"
-msgid "Enable/Disable Context Menu"
-msgstr ""
-
-msgctxt "#30022"
-msgid "File types to ignore"
-msgstr ""
-
-msgctxt "#30023"
-msgid "The Context Menu is"
-msgstr ""
-
-msgctxt "#30024"
-msgid "Cancel"
-msgstr ""
-
-msgctxt "#30025"
-msgid "Play All"
-msgstr ""
-
-msgctxt "#30026"
-msgid "Show Play All"
-msgstr ""
-
-msgctxt "#30027"
-msgid "Show in Context Menu"
-msgstr ""
-
-msgctxt "#30028"
 msgid "Clean Special Features Database"
 msgstr ""
 
-msgctxt "#30029"
-msgid "Auto Update Special Features Database"
+msgctxt "#30012"
+msgid "Show Play All"
 msgstr ""
 
-msgctxt "#30030"
-msgid "Auto Clean Special Features Database"
-msgstr ""
-
-msgctxt "#30031"
-msgid "Adds Play All button to list when more then one item has been found."
-msgstr ""
-
-msgctxt "#30032"
-msgid "Automatically cleans database when finished cleaning Kodi's Video Library."
-msgstr ""
-
-msgctxt "#30033"
-msgid "Automaticlly updates database when Kodi Video Library is updated."
-msgstr ""
-
-msgctxt "#30034"
-msgid "Database has been cleaned"
-msgstr ""
-
-msgctxt "#30035"
-msgid "Features"
-msgstr ""
-
-msgctxt "#30036"
-msgid "Show Special Features Button in Context if extras are found."
-msgstr ""
-
-msgctxt "#30037"
-msgid "File extensions to be ignore during scan"
-msgstr ""
-
-msgctxt "#30038"
-msgid "Adds all Special Features to a Playlist for continuous playback"
-msgstr ""
-
-msgctxt "#30050"
-msgid "Scan Library for Multi Disc .strm Files"
-msgstr ""
-
-msgctxt "#30051"
-msgid "Scanning Library for Mulit Disc"
-msgstr ""
-
-msgctxt "#30052"
-msgid "MySQL Settings "
-msgstr ""
-
-msgctxt "#30053"
-msgid "Username"
-msgstr ""
-
-msgctxt "#30054"
-msgid "Password"
-msgstr ""
-
-msgctxt "#30055"
-msgid "Server Address"
-msgstr ""
-
-msgctxt "#30056"
-msgid "Port"
-msgstr ""
-
-msgctxt "#30057"
-msgid "Use MySql for centralize database"
-msgstr ""
-
-msgctxt "#30058"
-msgid "Specail Features"
-msgstr ""
-
-msgctxt "#30059"
-msgid "Updating Library"
-msgstr ""
-
-msgctxt "#30060"
-msgid "Cleaning Special Features Database"
-msgstr ""
-
-msgctxt "#30061"
-msgid "Updating Special Features library"
-msgstr ""
-
-msgctxt "#30062"
-msgid "Scanning for special features"
-msgstr ""
-
-msgctxt "#30063"
-msgid "Special Features Library Updated"
-msgstr ""
-
-msgctxt "#30064"
-msgid "Special Features Library has been cleaned"
-msgstr ""
-
-msgctxt "#30065"
-msgid "Oops! You Haven't Added Any Movies to the Library Yet."
-msgstr ""
-
-msgctxt "#30066"
-msgid "Once You Have Added Movies to the Kodi Library Try Again."
-msgstr ""
-
-msgctxt "#30067"
-msgid "Oops! You Have Turned Off All Directories"
-msgstr ""
-
-msgctxt "#30068"
-msgid "Would You Like to Check Your Setting?"
-msgstr ""
-
-msgctxt "#30069"
-msgid "Show All Extras"
-msgstr ""
-
-msgctxt "#30070"
+msgctxt "#30013"
 msgid "Show Movies"
 msgstr ""
 
-msgctxt "#30071"
+msgctxt "#30014"
 msgid "Show TV Shows"
 msgstr ""
 
-msgctxt "#30072"
-msgid "Directories to Choose From"
+####################################################
+
+msgctxt "#30020"
+msgid "Database Name Sqlite/MySQL"
+msgstr ""
+
+msgctxt "#30021"
+msgid "Special Features Folder Name"
+msgstr ""
+
+msgctxt "#30022"
+msgid "Enable sfnfo files"
+msgstr ""
+
+msgctxt "#30023"
+msgid "File types to ignore"
+msgstr ""
+
+####################################################
+
+msgctxt "#30030"
+msgid "Use MySQL centralized database"
+msgstr ""
+
+msgctxt "#30031"
+msgid "Username"
+msgstr ""
+
+msgctxt "#30032"
+msgid "Password"
+msgstr ""
+
+msgctxt "#30033"
+msgid "Server Address"
+msgstr ""
+
+msgctxt "#30034"
+msgid "Port"
+msgstr ""
+
+####################################################
+
+msgctxt "#30040"
+msgid "Directory Options"
+msgstr ""
+
+msgctxt "#30041"
+msgid "Changing these options will effect results until rescanned"
+msgstr ""
+
+msgctxt "#30042"
+msgid "Changing File type may cause unexpected behavior"
+msgstr ""
+
+msgctxt "#30043"
+msgid "[B]Changing these settings will result in having to rebuild your database[/B]"
+msgstr ""
+
+#####################################################
+
+msgctxt "#30050"
+msgid "Scanning Kodi Library"
+msgstr ""
+
+msgctxt "#30051"
+msgid "Updating Special Features"
+msgstr ""
+
+msgctxt "#30052"
+msgid " of "
+msgstr ""
+
+msgctxt "#30053"
+msgid "Cleaning Special Features Database"
+msgstr ""
+
+msgctxt "#30054"
+msgid "Play All"
+msgstr ""
+
+msgctxt "#30055"
+msgid "Adds all items to playlist."
+msgstr ""
+
+msgctxt "#30056"
+msgid "Oops!, No Special Features available[CR]Would you like to scan for Special Features now?"
+msgstr ""
+
+msgctxt "#30057"
+msgid "All Special Features"
+msgstr ""
+
+msgctxt "#30058"
+msgid "Displays all Movies and TV Shows that have Special Features"
+msgstr ""
+
+msgctxt "#30059"
+msgid "Movie Extras"
+msgstr ""
+
+msgctxt "#30060"
+msgid "Displays all Movies that have Special Features"
+msgstr ""
+
+msgctxt "#30061"
+msgid "TV Show Extras"
+msgstr ""
+
+msgctxt "#30062"
+msgid "Displays all TV Shows that have Special Features"
+msgstr ""
+
+msgctxt "#30035"
+msgid ""
+msgstr ""
+
+msgctxt "#30035"
+msgid ""
+msgstr ""
+
+msgctxt "#30035"
+msgid ""
+msgstr ""
+
+msgctxt "#30035"
+msgid ""
+msgstr ""
+
+msgctxt "#30035"
+msgid ""
+msgstr ""
+
+msgctxt "#30035"
+msgid ""
+msgstr ""
+
+msgctxt "#30035"
+msgid ""
+msgstr ""
+
+msgctxt "#30035"
+msgid ""
+msgstr ""
+
+msgctxt "#30035"
+msgid ""
+msgstr ""
+
+msgctxt "#30035"
+msgid ""
+msgstr ""
+
+msgctxt "#30035"
+msgid ""
 msgstr ""

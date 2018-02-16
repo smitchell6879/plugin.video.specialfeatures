@@ -6,17 +6,17 @@ provider-name="smitchell6879">
 <requires>
   <import addon="xbmc.python" version="2.24.0"/>
   <import addon="xbmc.json" version="8.0.0"/>
-  <import addon="script.module.future" version="0.0.1"/>
+  <import addon="script.module.future" version="0.0.1"/> 
 </requires>
-<!-- <extension point="kodi.context.item"> -->
-    <!-- <menu id="kodi.core.main"> -->
-      <!-- <item library="addon.py"> -->
-        <!-- <label>30058</label> -->
-        <!-- <visible>String.IsEqual(Window(home).Property("extrasnxt"),true)+String.IsEqual(ListItem.dbtype,movie)</visible> -->
-      <!-- </item> -->
-    <!-- </menu> -->
-<!-- </extension> -->
-<!-- <extension point="xbmc.service" library="service.py" start="[login|startup]"/> -->
+<!-- <extension point="kodi.context.item">
+    <menu id="kodi.core.main">
+      <item library="script.py">
+        <label>30058</label>
+        <visible>true</visible>
+      </item>
+    </menu>
+</extension> -->
+<extension point="xbmc.service" library="service.py" start="[login|startup]"/>
 <extension point="xbmc.python.script" library="script.py"/>
 <extension point="xbmc.python.pluginsource" library="plugin.py">
   <provides>video</provides>
