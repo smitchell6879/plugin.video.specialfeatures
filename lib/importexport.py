@@ -38,19 +38,38 @@ class exPort:
 		child.text = '{}'.format(text)
 		tree.write(path)
 	def writeTree(self,iterate):
-		if dialog.yesno(lang(30000),lang(30075))== 1:
+		if dialog.yesno(lang(30000),lang(30063))== 1:
+			self.cst = 1
+			bgdc(lang(30000),lang(30064))
 			for self.item in iterate:
-				if mysql:
-					self.buildTree(self.item['title'],self.item['sorttitle'],self.item['plot'],os.path.splitext(self.item['bpath'])[0]+'.sfnfo')
-				else:
-					self.buildTree(self.item[1],self.item[3],self.item[4],os.path.splitext(self.item[2])[0]+'.sfnfo')
-		else:
-			for self.item in iterate:
-				if xbmcvfs.exists(os.path.splitext(self.item[2])[0]+'.sfnfo') == 0:
-					if mysql:
+				self.pct = float(self.cst)/float(len(iterate))*100
+				bgdu(int(self.pct),lang(30000),"{0} {1}{2}{3}".format(lang(30064),self.cst,lang(30052),len(iterate)))
+				try:
+					if mysql == 'true':
 						self.buildTree(self.item['title'],self.item['sorttitle'],self.item['plot'],os.path.splitext(self.item['bpath'])[0]+'.sfnfo')
 					else:
 						self.buildTree(self.item[1],self.item[3],self.item[4],os.path.splitext(self.item[2])[0]+'.sfnfo')
+
+				except:
+					error('Could not write to file directory, check your write permissions')
+				self.cst+=1
+
+		else:
+			self.cst = 1
+			bgdc(lang(30000),lang(30064))
+			for self.item in iterate:
+				if xbmcvfs.exists(os.path.splitext(self.item[2])[0]+'.sfnfo') == 0:
+					self.pct = float(self.cst)/float(len(iterate))*100
+					bgdu(int(self.pct),lang(30000),"{0} {1}{2}{3}".format(lang(30064),self.cst,lang(30052),len(iterate)))
+					try:
+						if mysql == 'true':
+							self.buildTree(self.item['title'],self.item['sorttitle'],self.item['plot'],os.path.splitext(self.item['bpath'])[0]+'.sfnfo')
+						else:
+							self.buildTree(self.item[1],self.item[3],self.item[4],os.path.splitext(self.item[2])[0]+'.sfnfo')
+					except:
+						error('Could not write to file directory, check your write permissions')
+					self.cst+=1
+		bgdcc()
 class imPort:
 	def upDate(self,path):
 		if self.checkout(path) == 1:

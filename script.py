@@ -40,7 +40,7 @@ if __name__ == '__main__':
         elif sys.argv[1] == 'cleandb':
             r.cleanDb()
         elif sys.argv[1] == 'export':
-            r.exprtDb()
+            r.exportDb()
         elif sys.argv[1] == 'editinfo':
             r.editInfo()
         elif sys.argv[1] == 'test':

@@ -270,7 +270,7 @@ class dbEnterExit:
         self.trAsh = list()
         self.entry = self.sql.exeCute('all_special','','all')
         for self.item in self.entry:
-            if mysql:
+            if mysql == 'true':
                 self.verify = self.verIfy(self.item['file'])
                 if self.verify == 0:
                     self.trAsh.append(self.item['file'])
@@ -283,7 +283,7 @@ class dbEnterExit:
         self.trAsh = list()
         self.entry = self.sql.exeCute('all_movies','','all')
         for self.item in self.entry:
-            if mysql:
+            if mysql == 'true':     
                 self.verify = self.verIfy(self.item['file'])
                 if self.verify == 0:
                     self.trAsh.append(self.item['file'])
@@ -302,7 +302,7 @@ class dbEnterExit:
         self.trAsh = list()
         self.entry = self.sql.exeCute('all_tvshows','','all')
         for self.item in self.entry:
-            if mysql:
+            if mysql == 'true':
                 self.verify = self.verIfy(self.item['file'])
                 if self.verify == 0:
                     self.trAsh.append(self.item['file'])
@@ -322,7 +322,7 @@ class dbEnterExit:
             self.entry = self.sql.exeCute('all_movies','','all')
             if self.entry:
                 for self.item in self.entry:
-                    if mysql:
+                    if mysql == 'true':
                         self.art = {}
                         self.cast = list()
                         self.ivar = (self.item['file'],)
@@ -372,7 +372,7 @@ class dbEnterExit:
             self.entry = self.sql.exeCute('all_tvshows','','all')
             if self.entry:
                 for self.item in self.entry:
-                    if mysql:
+                    if mysql == 'true':
                         self.art = {}
                         self.cast = list()
                         self.ivar = (self.item['file'],)
@@ -423,7 +423,7 @@ class dbEnterExit:
             self.entry = self.sql.exeCute('fw_special',self.ivar,'allv')
             if self.entry:
                 for self.item in self.entry:
-                    if mysql:
+                    if mysql == 'true':
                         self.art = {}
                         self.cast = list()
                         self.aentry = self.sql.exeCute('fw_art',self.ivar,'allv')
@@ -467,7 +467,7 @@ class dbEnterExit:
             try:
                 self.entry = self.sql.exeCute('fw_special3',item,'allv')
                 for self.item in self.entry:
-                    if mysql:
+                    if mysql == 'true':
                         self.result = {'file':self.item['file'],'title':self.item['title'],'path':self.item['bpath'],'sorttitle':self.item['sorttitle'], 'plot':self.item['plot']}
                     else:
                         self.result = {'file':self.item[0],'title':self.item[1],'path':self.item[2],'sorttitle':self.item[3], 'plot':self.item[4]}

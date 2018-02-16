@@ -3,12 +3,13 @@
 	<category label="30001">
 		<setting label="30010" type="action" action="RunScript(plugin.specialfeatures,scandb)"/>
 		<setting label="30011" type="action" action="RunScript(plugin.specialfeatures,cleandb)"/>
+		<setting label="30023" type="action" action="RunScript(plugin.specialfeatures,export)"/>
 		<setting type="sep"/>
 		<setting type="lsep" label="30040"/>
 		<setting label="30012" type='bool' id="playall" default="true"/>
-		<!-- <setting label="30069" type='bool' id="showalldir" default="true"/> -->
-		<setting label="30013" type='bool' id="moviedir" default="true"/>
-		<setting label="30014" type='bool' id="tvshowdir" default="false"/>
+		<setting label="30013" type='bool' id="showalldir" default="true"/>
+		<setting label="30014" type='bool' id="moviedir" default="true"/>
+		<setting label="30015" type='bool' id="tvshowdir" default="true"/>
 		<!-- <setting label="30029" type='bool' id="aclndb" visible="false" default="false"/>
 		<setting label="30030" type='bool' id="aupdb" visible="false" default="false"/> -->
 	</category>
@@ -18,7 +19,7 @@
 		<setting label="30020" id="dbName" type="text" default="specialfeatures"/>
 		<setting label="30021" id="folder" type="text" default="Extras"/>
 		<setting label="30022" type='bool' id="sfnfo" default="true"/>
-		<setting label="30022" type="text" id="excludetypes"  default="\.(jpg|png|idx|srt|sfnfo|nfo|sub|db|txt|gif|xml)$"/>
+		<setting label="30024" type="text" id="excludetypes"  default="\.(jpg|png|idx|srt|sfnfo|nfo|sub|db|txt|gif|xml)$"/>
 		<setting type="lsep" label="30042"/>
 	</category>
 	<category label="30003">

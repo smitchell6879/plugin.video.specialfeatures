@@ -39,10 +39,14 @@ msgid "Show Play All"
 msgstr ""
 
 msgctxt "#30013"
-msgid "Show Movies"
+msgid "Show All"
 msgstr ""
 
 msgctxt "#30014"
+msgid "Show Movies"
+msgstr ""
+
+msgctxt "#30015"
 msgid "Show TV Shows"
 msgstr ""
 
@@ -61,6 +65,10 @@ msgid "Enable sfnfo files"
 msgstr ""
 
 msgctxt "#30023"
+msgid "Export sfnfo files to file system"
+msgstr ""
+
+msgctxt "#30024"
 msgid "File types to ignore"
 msgstr ""
 
@@ -158,12 +166,12 @@ msgctxt "#30062"
 msgid "Displays all TV Shows that have Special Features"
 msgstr ""
 
-msgctxt "#30035"
-msgid ""
+msgctxt "#30063"
+msgid "Overwrite files?"
 msgstr ""
 
-msgctxt "#30035"
-msgid ""
+msgctxt "#30064"
+msgid "Exporting Special Features"
 msgstr ""
 
 msgctxt "#30035"
