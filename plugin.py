@@ -20,7 +20,8 @@ class plugRoutine:
                 home.setProperty('sf_here','all')
                 vw.cATEgory(self.params['directory'])
             elif self.params.get('directory')=='files':
-                vw.iteMList(self.params['item'],self.params['category'])
+                text(self.params)
+                vw.iteMList(self.params['item'],self.category)
             elif self.params.get('action')=='play':
                 pl.plaYVideo(self.params['video'])
             elif self.params.get('action')=='playall':
@@ -32,6 +33,13 @@ class plugRoutine:
         vw = Views()
         global pl
         pl = Player()
+        self.category = self.params.get('category')
+        if self.category == 'tvshow':
+            self.category = 'tvshows'
+        elif self.category == 'movie':
+            self.category = 'movies'
+        else:
+            self.category = 'videos'
 class Views:
     def vAr(self):
         self.DbEE = dbEnterExit()
@@ -189,10 +197,8 @@ class Views:
             self.vAr()
             self.test = item
             self.files = self.DbEE.initDb('file',item)
-            if category == 'tvshow':
-                category = 'tvshows'
-            if category == 'movie':
-                category = 'movies'
+            
+
             for self.item in self.files:
                 self.litem     = xbmcgui.ListItem(label=self.item['title'])
                 self.t = self.item['title']

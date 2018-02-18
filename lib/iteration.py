@@ -58,6 +58,7 @@ class resultFILTER:
                         if self.ef is not None:
                             self.sfle = os.path.splitext(self.fle)[0]
                             if sfnfo:
+                                info(self.ef)
                                 self.sf = ip.upDate(self.ef)
                             if self.sf == None:
                                 self.sf={'title':self.sfle,'path':self.ef, 'sorttitle': self.sfle}
@@ -485,8 +486,10 @@ class dbEnterExit:
         elif category == 'quikchk2':
             self.entry = self.sql.exeCute('fw_special',xbmc.getInfoLabel("ListItem.FileNameAndPath"),'one')
             if self.entry is None:
+                home.clearProperty('sf_item')
                 home.clearProperty('sf_info')
             else:
+                home.setProperty('sf_item',xbmc.getInfoLabel("ListItem.FileNameAndPath"))
                 home.setProperty('sf_info','true')
     def quckEdit(self):
         self.qvar=unquote(xbmc.getInfoLabel("Container.FolderPath")).split('=')[3],xbmc.getInfoLabel("Container().ListItem().Label")
