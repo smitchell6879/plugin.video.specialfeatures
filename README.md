@@ -39,7 +39,7 @@ While the long-term goal is to see every skin supporting Special Features native
 - [x] Amber
 - [x] AppTV
 - [x] Arctic Zephyr
-- [x] Bello 6
+ - [x] Bello 6
 - [x] Black Glass Nova
 - [x] Box
 - [x] Chroma
@@ -79,6 +79,6 @@ Without tweaking your ![advanced settings](https://kodi.wiki/view/Advancedsettin
 
 ## MySQL Server Support
 
-The optional MySQL database option has been tested on MySQL 5.7.
+The optional SQL database option has been tested on MySQL 5.7 and MariaDB 10.2.
 
 Assuming you already have MySQL setup and running, simply go to addon settings MySQL tab and fill in your information. It's as simple as that!
