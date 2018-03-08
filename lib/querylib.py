@@ -87,7 +87,7 @@ class Build:
                  'movies'   : 'CREATE TABLE IF NOT EXISTS movies (file TEXT, title TEXT, year TEXT, plot TEXT, rating TEXT, votes TEXT, dateadded TEXT, mpaa TEXT, premiered TEXT, userrating TEXT, top250 TEXT, trailer TEXT, sorttitle TEXT, mid text)',
                  'art'      : 'CREATE TABLE IF NOT EXISTS art (file TEXT, type TEXT, location TEXT)',
                  'cast'     : 'CREATE TABLE IF NOT EXISTS cast ( file TEXT, name TEXT, thumbnail TEXT, role TEXT, ordr TEXT)',
-                 'special'  : 'CREATE TABLE IF NOT EXISTS special (file TEXT, title TEXT, bpath TEXT, sorttitle TEXT, plot TEXT)'
+                 'special'  : 'CREATE TABLE IF NOT EXISTS special (file TEXT, title TEXT, bpath TEXT, sorttitle TEXT, plot TEXT, thumb TEXT)'
                  }
                  # 'ratings'  : 'CREATE TABLE IF NOT EXISTS cast ()'
                  # 'studio'   : 'CREATE TABLE IF NOT EXISTS cast ()'
@@ -114,7 +114,7 @@ class Build:
                     #INSERT
                  'in_tvshows'   : 'INSERT INTO tvshows VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
                  'in_movies'    : 'INSERT INTO movies VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)',
-                 'in_special'   : 'INSERT INTO special VALUES (?,?,?,?,?)',
+                 'in_special'   : 'INSERT INTO special VALUES (?,?,?,?,?,?)',
                  'in_art'       : 'INSERT INTO art VALUES (?,?,?)',
                  'in_cast'      : 'INSERT INTO cast VALUES (?,?,?,?,?)',
                     #UPDATE
@@ -123,6 +123,7 @@ class Build:
                  'd_tvshows'    : 'DELETE FROM tvshows WHERE file=?',
                  'd_movies'     : 'DELETE FROM movies WHERE file=?',
                  'd_special'    : 'DELETE FROM special WHERE file=?',
+                 'd_special2'    : 'DELETE FROM special WHERE bpath=?',
                  'd_art'        : 'DELETE FROM art WHERE file=?',
                  'd_cast'       : 'DELETE FROM cast WHERE file=?',
                 }
@@ -156,6 +157,7 @@ class Build:
                  'd_tvshows'    : 'DELETE FROM tvshows WHERE file=%s',
                  'd_movies'     : 'DELETE FROM movies WHERE file=%s',
                  'd_special'    : 'DELETE FROM special WHERE file=%s',
+                 'd_special2'    : 'DELETE FROM special WHERE bpath=%s',
                  'd_art'        : 'DELETE FROM art WHERE file=%s',
                  'd_cast'       : 'DELETE FROM cast WHERE file=%s',
                 }

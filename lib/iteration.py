@@ -1,6 +1,7 @@
 from lib.sys_init import *
 from lib.querylib import *
 from lib.importexport import *
+import subprocess
 ip         = imPort()
 ep         = exPort()
 
@@ -13,8 +14,6 @@ class resultFILTER:
         if self.vR is True:
             self.sortDir(query,result)
             self.verifyDir(self.checker)
-
-
     '''Checking results''' 
     def verifyRes(self,query,result):
         if 'result' in result:
@@ -61,7 +60,8 @@ class resultFILTER:
                                 info(self.ef)
                                 self.sf = ip.upDate(self.ef)
                             if self.sf == None:
-                                self.sf={'title':self.sfle,'path':self.ef, 'sorttitle': self.sfle}
+                                self.t = self.getthumb(self.ef)
+                                self.sf={'title':self.sfle,'path':self.ef, 'sorttitle': self.sfle, 'thumb':self.t}
                             self.bonus.append(self.sf)
                 if len(self.folder)>0:
                     for self.fold in self.folder:
@@ -71,13 +71,18 @@ class resultFILTER:
                             if sfnfo:
                                 self.sf = ip.upDate(self.ep)
                             if self.sf == None:
-                                self.sf={'title':self.fold,'path':self.ep,'sorttitle':self.fold}
+                                self.t = self.getthumb(self.ep)
+                                self.sf={'title':self.fold,'path':self.ep,'sorttitle':self.fold, 'thumb':self.t}
                             self.bonus.append(self.sf)
             if len(self.bonus)>0:
                 self.item.update({'bonus':self.bonus})
                 carList.append(self.item)
             # else:
             #     return
+    def getthumb(self,file):
+        self.thumb = resultFILTER().build_video_thumbnail_path(file)
+        xbmc.getCacheThumbName(file)
+        return self.thumb
     '''Getting Files'''
     def verifyFile(self,file,sp):
         self.dump = False
@@ -150,6 +155,12 @@ class resultFILTER:
                   'premiered':self.pr,'dateadded':self.d,'votes':self.v,'rating':self.r,'userrating':self.ur,'ratings':self.ar,
                   'trailer':self.tr,'top250':self.top,'studio':self.st,'art':self.a,'cast':self.c,'genre':self.g,'tag':self.tag,
                   'country':self.co, 'sorttitle':self.st}
+    def build_video_thumbnail_path(self,videofile):
+        if videofile.startswith('image://'):
+            return videofile
+        # Kodi goes lowercase and doesn't encode some chars
+        self.result = 'image://video@{0}/'.format(quote(videofile, '()!'))
+        return re.sub(r'%[0-9A-F]{2}', lambda mo: mo.group().lower(), self.result)
 class dbEnterExit:
     def initDb(self,action,item=""):
         if action == 'update':
@@ -241,9 +252,14 @@ class dbEnterExit:
             for self.bitem in self.item['bonus']:
                 self.entry = self.sql.exeCute('fw_special2',self.bitem['path'],'one')
                 if self.entry is None:
-                    self.input = (self.item['file'],self.bitem['title'],self.bitem['path'],self.bitem['sorttitle'],self.bitem.get('plot'))
+                    self.input = (self.item['file'],self.bitem['title'],self.bitem['path'],self.bitem['sorttitle'],self.bitem.get('plot'),self.bitem.get('thumb'))
                     self.sql.exeCute('in_special', self.input,'com')
+                    # subprocess.call(['ffmpeg','-i',self.bitem['path'], '-ss', '00:00:00.000', '-vframes', '1', addir+self.bitem['title']+'.png'])
+                    # self.thumb = resultFILTER().build_video_thumbnail_path(self.item['path'])
+
+                    # self.item['art'].update({'thumb':self.thumb})
             #Art
+
             for self.aitem in self.item['art']:
                 self.var = (self.item['file'],self.aitem)
                 self.entry = self.sql.exeCute('fw_art2',self.var,'onev')
@@ -272,52 +288,68 @@ class dbEnterExit:
         self.entry = self.sql.exeCute('all_special','','all')
         for self.item in self.entry:
             if mysql == 'true':
-                self.verify = self.verIfy(self.item['file'])
+                # self.verify = self.verIfy(self.item['file'])
+                self.verify = self.verIfy(self.item['bpath'])
                 if self.verify == 0:
-                    self.trAsh.append(self.item['file'])
+                    self.trAsh.append(self.item['bpath'])
             else:
-                self.verify = self.verIfy(self.item[0])
+                self.verify = self.verIfy(self.item[2])
                 if self.verify == 0:
-                    self.trAsh.append(self.item[0])
+                    self.trAsh.append(self.item[2])
         for self.item in self.trAsh:
-            self.sql.exeCute('d_special',self.item,'com2')
+            self.sql.exeCute('d_special2',self.item,'com2')
         self.trAsh = list()
         self.entry = self.sql.exeCute('all_movies','','all')
         for self.item in self.entry:
             if mysql == 'true':     
                 self.verify = self.verIfy(self.item['file'])
+                self.doublechk = self.sql.exeCute('fw_special',self.item['file'],'one')
                 if self.verify == 0:
                     self.trAsh.append(self.item['file'])
-            else:   
+                if self.doublechk == None:
+                    self.trAsh.append(self.item['file'])
+            else:
                 self.verify = self.verIfy(self.item[0])
+                self.doublechk = self.sql.exeCute('fw_special',self.item[0],'one')
                 if self.verify == 0:
                     self.trAsh.append(self.item[0])
-        for self.item in self.trAsh:
-            self.pct = float(self.cst)/float(len(trAsh))*100
-            bgdu(int(self.pct),lang(30000),"{0} {1}{2}{3}".format(lang(30053),self.cst,lang(30052),len(trAsh)))
-            self.sql.exeCute('d_movies',self.item,'com2')
-            self.sql.exeCute('d_art',self.item,'com2')
-            self.sql.exeCute('d_cast',self.item,'com2')
-            self.cst+=1
+                if self.doublechk == None:
+                    self.trAsh.append(self.item[0])
+        if len(trAsh)>0:
+            for self.item in self.trAsh:
+                self.pct = float(self.cst)/float(len(trAsh))*100
+                bgdu(int(self.pct),lang(30000),"{0} {1}{2}{3}".format(lang(30053),self.cst,lang(30052),len(trAsh)))
+                self.sql.exeCute('d_movies',self.item,'com2')
+                self.sql.exeCute('d_art',self.item,'com2')
+                self.sql.exeCute('d_cast',self.item,'com2')
+                self.cst+=1
         self.cst=1
         self.trAsh = list()
         self.entry = self.sql.exeCute('all_tvshows','','all')
         for self.item in self.entry:
             if mysql == 'true':
                 self.verify = self.verIfy(self.item['file'])
+                self.doublechk = self.sql.exeCute('fw_special',self.item['file'],'one')
                 if self.verify == 0:
+                    self.trAsh.append(self.item['file'])
+                if self.doublechk == None:
                     self.trAsh.append(self.item['file'])
             else:
                 self.verify = self.verIfy(self.item[0])
+                self.doublechk = self.sql.exeCute('fw_special',self.item[0],'one')
                 if self.verify == 0:
                     self.trAsh.append(self.item[0])
-        for self.item in self.trAsh:
-            self.pct = float(self.cst)/float(len(trAsh))*100
-            bgdu(int(self.pct),lang(30000),"{0} {1}{2}{3}".format(lang(30053),self.cst,lang(30052),len(trAsh)))
-            self.sql.exeCute('d_tvshows',self.item,'com2')
-            self.sql.exeCute('d_art',self.item,'com2')
-            self.sql.exeCute('d_cast',self.item,'com2')
-            self.cst+=1
+                if self.doublechk == None:
+                    self.trAsh.append(self.item[0])
+        if len(self.trAsh)>0:
+            for self.item in self.trAsh:
+                self.pct = float(self.cst)/float(len(self.trAsh))*100
+                bgdu(int(self.pct),lang(30000),"{0} {1}{2}{3}".format(lang(30053),self.cst,lang(30052),len(trAsh)))
+                self.sql.exeCute('d_tvshows',self.item,'com2')
+                self.sql.exeCute('d_art',self.item,'com2')
+                self.sql.exeCute('d_cast',self.item,'com2')
+                self.cst+=1
+        bgdcc()
     def queryDb(self,category,item=''):
         if category == 'movies':
             self.entry = self.sql.exeCute('all_movies','','all')
@@ -439,7 +471,8 @@ class dbEnterExit:
                                         'role'       : self.citem['role'],
                                         'order'      : self.citem['ordr'],
                                         }          
-                            self.cast.append(self.actor) 
+                            self.cast.append(self.actor)
+                        self.art.update({'thumb':self.item['thumb']})  
                         self.input = {'file':self.item['file'], 'title':self.item['title'], 'path':self.item['bpath'],'sorttitle':self.item['sorttitle'],
                                       'plot':self.item['plot'], 'art':self.art, 'cast':self.cast
                                       }
@@ -458,7 +491,8 @@ class dbEnterExit:
                                         'role'       : self.citem[3],
                                         'order'      : self.citem[4],
                                         }          
-                            self.cast.append(self.actor) 
+                            self.cast.append(self.actor)
+                        self.art.update({'thumb':self.item[5]}) 
                         self.input = {'file':self.item[0], 'title':self.item[1], 'path':self.item[2],'sorttitle':self.item[3],
                                       'plot':self.item[4], 'art':self.art, 'cast':self.cast
                                       }
@@ -489,8 +523,11 @@ class dbEnterExit:
                 home.clearProperty('sf_item')
                 home.clearProperty('sf_info')
             else:
-                home.setProperty('sf_item',xbmc.getInfoLabel("ListItem.FileNameAndPath"))
+                self.url = self.get_url(directory='files', item=xbmc.getInfoLabel("ListItem.FileNameAndPath"), category='videos')
+                home.setProperty('sf_item',self.url)
                 home.setProperty('sf_info','true')
+    def get_url(self,**kwargs):
+        return '{0}?{1}'.format("plugin://plugin.specialfeatures/",urlencode(kwargs))
     def quckEdit(self):
         self.qvar=unquote(xbmc.getInfoLabel("Container.FolderPath")).split('=')[3],xbmc.getInfoLabel("Container().ListItem().Label")
         self.bonus = dbEnterExit().initDb('quikchk',self.qvar)

@@ -174,8 +174,14 @@ msgctxt "#30064"
 msgid "Exporting Special Features"
 msgstr ""
 
-msgctxt "#30035"
-msgid ""
+msgctxt "#30065"
+msgid "Special Features Database Has Been Cleaned."
+msgstr ""
+
+#################################################
+
+msgctxt "#30070"
+msgid "Special Features"
 msgstr ""
 
 msgctxt "#30035"

@@ -1,5 +1,8 @@
 from lib.sys_init import *
 from lib.iteration import *
+from PIL import Image
+
+
 
 
 
@@ -20,12 +23,11 @@ class plugRoutine:
                 home.setProperty('sf_here','all')
                 vw.cATEgory(self.params['directory'])
             elif self.params.get('directory')=='files':
-                text(self.params)
                 vw.iteMList(self.params['item'],self.category)
             elif self.params.get('action')=='play':
                 pl.plaYVideo(self.params['video'])
             elif self.params.get('action')=='playall':
-                pl.plaYList(self.params['category'])
+                pl.plaYList(self.params['item'])
         else:
             vw.mainDir()
     def var(self):
@@ -34,8 +36,12 @@ class plugRoutine:
         global pl
         pl = Player()
         self.category = self.params.get('category')
-        if self.category == 'tvshow':
+        if self.category == 'tvshows':
             self.category = 'tvshows'
+        elif self.category == 'tvshow':
+            self.category = 'tvshows'
+        elif self.category == 'movies':
+            self.category = 'movies'
         elif self.category == 'movie':
             self.category = 'movies'
         else:
@@ -133,7 +139,7 @@ class Views:
             #     return
     def cATEgory(self,category):
         self.vAr()
-        self.plugart = False
+        # self.plugart = False
         if category != 'all':
             self.folder = self.DbEE.initDb(category)
             if not len(self.folder)>0:
@@ -143,9 +149,9 @@ class Views:
                     exit()
             else:
                 for self.item in self.folder:
-                    if self.plugart == False:
-                        xbmcplugin.setPluginFanart(self.handle,self.item['art']['fanart'])
-                        self.plugart = True
+                    # if self.plugart == False:
+                    #     xbmcplugin.setPluginFanart(self.handle,self.item['art']['fanart'])
+                    #     self.plugart = True
                     self.litem     = xbmcgui.ListItem(label=self.item['title'])
                     self.itemVar()
                     self.constant()
@@ -195,25 +201,27 @@ class Views:
                 xbmcplugin.endOfDirectory(self.handle)
     def iteMList(self,item,category):
             self.vAr()
-            self.test = item
             self.files = self.DbEE.initDb('file',item)
-            
-
             for self.item in self.files:
-                self.litem     = xbmcgui.ListItem(label=self.item['title'])
-                self.t = self.item['title']
                 self.f = self.item['path']
+                self.litem     = xbmcgui.ListItem(label=self.item['title'], path=self.f)
+                self.t = self.item['title']
                 self.p = self.item['plot']
                 self.st = self.item['sorttitle']
-                self.litem.setArt(self.item['art'])
+                if os.path.splitext(self.f)[1] == '.bdmv':
+                    self.litem.setArt({'fanart':self.item['art'].get('fanart'),'poster':self.item['art'].get('poster')})
+                elif os.path.splitext(self.f)[1] == '.IFO':
+                    self.litem.setArt({'fanart':self.item['art'].get('fanart'),'poster':self.item['art'].get('poster')})
+                else:
+                    self.litem.setArt({'fanart':self.item['art'].get('fanart'),'thumb':self.item['art'].get('thumb')})
                 self.litem.setCast(self.item['cast'])
                 self.litem.setInfo('video',{'title':self.t, 'plot': self.p,'path':self.f,'sorttitle':self.st})
                 self.is_folder  = False
                 self.litem.addContextMenuItems([('Manage...', 'RunScript(plugin.specialfeatures,editinfo)',)])
                 self.litem.setContentLookup(True) 
-                self.url        = self.get_url(action='play', video=self.f)
+                # xbmc.getCacheThumbName(self.f)
                 self.litem.setProperty('IsPlayable', 'true')
-                xbmcplugin.addDirectoryItem(self.handle, self.url, self.litem, self.is_folder)
+                xbmcplugin.addDirectoryItem(self.handle, self.f, self.litem, self.is_folder)
             xbmcplugin.setContent(self.handle, category)
             if len(self.files) > 1:
                 if playall == 'true':
@@ -222,13 +230,9 @@ class Views:
                     self.playall.setCast(self.item['cast'])
                     self.playall.setInfo('video',{'plot':lang(30055)})
                     self.playall.setProperty('IsPlayable', 'true')
-                    self.url = self.get_url(action='playall', category="")
+                    self.url = self.get_url(action='playall', item=item)
                     xbmcplugin.addDirectoryItem(self.handle,self.url, self.playall, self.is_folder)
             xbmcplugin.addSortMethod(self.handle, xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE )
-            # xbmcplugin.addSortMethod(self.handle, xbmcplugin.SORT_METHOD_MPAA_RATING )
-            # xbmcplugin.addSortMethod(self.handle, xbmcplugin.SORT_METHOD_VIDEO_YEAR )
-            # xbmcplugin.addSortMethod(self.handle, xbmcplugin.SORT_METHOD_VIDEO_RATING )
-            # xbmcplugin.addSortMethod(self.handle, xbmcplugin.SORT_METHOD_DATEADDED  )
             xbmcplugin.endOfDirectory(self.handle)
     def get_url(self,**kwargs):
         return '{0}?{1}'.format(self.url,urlencode(kwargs))
@@ -237,6 +241,7 @@ class Player:
     def var(self):
         self._url           = sys.argv[0]
         self._handle        = int(sys.argv[1])
+        self.DbEE = dbEnterExit()
     def item_var(self):
         self.year           = self.item.get('year','')
         self.plot           = self.item.get('plot','')
@@ -249,26 +254,24 @@ class Player:
         self.var()
         self.playitem = xbmcgui.ListItem(path=path)
         xbmcplugin.setResolvedUrl(self._handle, True, listitem=self.playitem)
-    def plaYList(self,category):
-        play.clear()
-        if category == 'videos':
-                self.bonus = VIEWS().buildallfiles() 
-        for self.item in self.bonus:
+    def plaYList(self,category=''):
+        self.var()
+        playL.clear()
+        self.files = self.DbEE.initDb('file',category)
+        for self.item in self.files:
             self.litem = xbmcgui.ListItem(self.item.get('title'))
-            self.var()
             self.title  = self.item.get('title')
-            self.video  = self.item.get('file')
             self.litem.setInfo('video',{'title':self.item.get('title'), 'label':self.item.get('title')})
             self.litem.setCast(self.item.get('cast'))
             self.litem.setArt(self.item.get('art'))
-            self.litem.setProperty('IsPlayable', 'true')
-            play.add(url=self.video,listitem=self.litem)
-        xbmc.Player().play(play)          
+            playL.add(url=self.item.get('path'))
+        xbmc.executebuiltin('Action(Fullscreen)') 
+        xbmc.Player().play(playL,startpos=-1)
+
 
 
 
 if __name__ =='__main__':
-    info(sys.argv)
     plugRoutine(sys.argv)
 
 

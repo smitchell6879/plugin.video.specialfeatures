@@ -19,6 +19,7 @@ import xbmcaddon
 import xbmcvfs
 import xbmcgui
 import xbmcplugin
+import urllib
 
 
 

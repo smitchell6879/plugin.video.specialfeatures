@@ -1,6 +1,9 @@
 from lib.sys_init import *
 from lib.iteration import *
 from lib.importexport import *
+import urllib2
+from hashlib import md5
+
 
 
 class Routines:
@@ -14,18 +17,21 @@ class Routines:
         exit()
     def cleanDb(self):
         dbEnterExit().initDb('clean')
+        note(txt=lang(30065))
     def editInfo(self):
         dbEnterExit().quckEdit()
     def exportDb(self):
         dbEnterExit().initDb('export')
     def listItem(self):
-        self.url = self.get_url(directory='files', item=home.getProperty('sf_item'), category=xbmc.getInfoLabel("ListItem.DBTYPE"))
-        xbmc.executebuiltin('ActivateWindow(videos,{},return)'.format(self.url))    
+        text(xbmc.getInfoLabel('System.CurrentWindow'))
+        text(xbmc.getInfoLabel('System.CurrentControl '))
+        self.url =home.getProperty('sf_item')
+        # self.url = self.get_url(directory='files', item=home.getProperty('sf_item'), category=xbmc.getInfoLabel("ListItem.DBTYPE"))
+        xbmc.executebuiltin('ActivateWindow(videos, {} ,return)'.format(self.url))    
     def get_url(self,**kwargs):
         return '{0}?{1}'.format("plugin://plugin.specialfeatures/",urlencode(kwargs))
 
 
-   
 
 
 if __name__ == '__main__':
@@ -44,6 +50,6 @@ if __name__ == '__main__':
         elif sys.argv[1] == 'editinfo':
             r.editInfo()
         elif sys.argv[1] == 'test':
-            text(xbmc.getInfoLabel("ListItem.DBTYPE"))
+            text('Done')
     else:
         xbmc.executebuiltin('Addon.OpenSettings({})'.format(addonid))
