@@ -11,5 +11,5 @@ if __name__ == '__main__':
     	home.setProperty('SpecialFeatures.ContextMenu',showcon)
     	if home.getProperty('SpecialFeatures.Query') != 'true':
             dbEnterExit().initDb('quikchk2')
-        if monitor.waitForAbort(1):
+        if monitor.waitForAbort(.6):
             break
