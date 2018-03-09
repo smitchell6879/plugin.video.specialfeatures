@@ -992,7 +992,7 @@
                         <onleft>9009</onleft>
                     </control>
                     <control type="button" id="1227">
-                        <visible>String.IsEqual(Window(home).Property(sf_info),true)</visible>
+                        <visible>String.IsEqual(Window(home).Property(SpecialFeatures.Visible),true)</visible>
                         <label>Special Features</label>
                         <include>RightDialogButton</include>
                         <description>Special Features</description>

@@ -23,10 +23,8 @@ class Routines:
     def exportDb(self):
         dbEnterExit().initDb('export')
     def listItem(self):
-        text(xbmc.getInfoLabel('System.CurrentWindow'))
-        text(xbmc.getInfoLabel('System.CurrentControl '))
-        self.url =home.getProperty('sf_item')
-        # self.url = self.get_url(directory='files', item=home.getProperty('sf_item'), category=xbmc.getInfoLabel("ListItem.DBTYPE"))
+        self.url =home.getProperty('SpecialFeatures.Path')
+        # self.url = self.get_url(directory='files', item=home.getProperty('SpecialFeatures.Path'), category=xbmc.getInfoLabel("ListItem.DBTYPE"))
         xbmc.executebuiltin('ActivateWindow(videos, {} ,return)'.format(self.url))    
     def get_url(self,**kwargs):
         return '{0}?{1}'.format("plugin://plugin.specialfeatures/",urlencode(kwargs))

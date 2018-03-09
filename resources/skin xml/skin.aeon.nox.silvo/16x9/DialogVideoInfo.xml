@@ -688,7 +688,7 @@
 								<label></label>
 								<onclick>Action(close)</onclick>
 								<onclick>RunScript(plugin.specialfeatures,listitem)</onclick>
-								<visible>String.IsEqual(Window(home).Property(sf_info),true)</visible>
+								<visible>String.IsEqual(Window(home).Property(SpecialFeatures.Visible),true)</visible>
 							</control>
 							<control type="image" id="1228">
 								<width>2</width>

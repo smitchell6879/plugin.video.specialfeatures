@@ -50,6 +50,10 @@ msgctxt "#30015"
 msgid "Show TV Shows"
 msgstr ""
 
+msgctxt "#30016"
+msgid "Enable Context Menu"
+msgstr ""
+
 ####################################################
 
 msgctxt "#30020"

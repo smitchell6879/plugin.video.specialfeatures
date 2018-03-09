@@ -165,63 +165,63 @@ class dbEnterExit:
     def initDb(self,action,item=""):
         if action == 'update':
             if Build().checkout()>0:
-                home.setProperty('SFQUERY','true')
+                home.setProperty('SpecialFeatures.Query','true')
                 self.sql = SQL()
                 self.sql.setControl()
                 self.insertDb()
-                home.clearProperty('SFQUERY')
+                home.clearProperty('SpecialFeatures.Query')
         elif action == 'clean':
-            home.setProperty('SFQUERY','true')
+            home.setProperty('SpecialFeatures.Query','true')
             self.sql = SQL()
             self.sql.setControl()
             self.detchDb()
-            home.clearProperty('SFQUERY')
+            home.clearProperty('SpecialFeatures.Query')
         elif action == 'movies':
-            home.setProperty('SFQUERY','true')
+            home.setProperty('SpecialFeatures.Query','true')
             self.sql = SQL()
             self.sql.setControl()
             self.queryDb('movies')
-            home.clearProperty('SFQUERY')
+            home.clearProperty('SpecialFeatures.Query')
             return carList
         elif action == 'tvshows':
-            home.setProperty('SFQUERY','true')
+            home.setProperty('SpecialFeatures.Query','true')
             self.sql = SQL()
             self.sql.setControl()
             self.queryDb('tvshows')
-            home.clearProperty('SFQUERY')
+            home.clearProperty('SpecialFeatures.Query')
             return carList
         elif action == 'file':
-            home.setProperty('SFQUERY','true')
+            home.setProperty('SpecialFeatures.Query','true')
             self.sql = SQL()
             self.sql.setControl()
             self.queryDb('file',item)
-            home.clearProperty('SFQUERY')
+            home.clearProperty('SpecialFeatures.Query')
             return fliList
         elif action == 'quikchk':
-            home.setProperty('SFQUERY','true')
+            home.setProperty('SpecialFeatures.Query','true')
             self.sql = SQL()
             self.sql.setControl()
             self.queryDb('quikchk',item)
-            home.clearProperty('SFQUERY')
+            home.clearProperty('SpecialFeatures.Query')
             return self.result
         elif action == 'smallup':
-            home.setProperty('SFQUERY','true')
+            home.setProperty('SpecialFeatures.Query','true')
             self.sql = SQL()
             self.sql.setControl()
             self.queryDb('smallup',item)
-            home.clearProperty('SFQUERY')
+            home.clearProperty('SpecialFeatures.Query')
         elif action == 'export':
-            home.setProperty('SFQUERY','true')
+            home.setProperty('SpecialFeatures.Query','true')
             self.sql = SQL()
             self.sql.setControl()
             self.queryDb('export')
-            home.clearProperty('SFQUERY')
+            home.clearProperty('SpecialFeatures.Query')
         elif action == 'quikchk2':
-            home.setProperty('SFQUERY','true')
+            home.setProperty('SpecialFeatures.Query','true')
             self.sql = SQL()
             self.sql.setControl()
             self.queryDb('quikchk2')
-            home.clearProperty('SFQUERY')
+            home.clearProperty('SpecialFeatures.Query')
     def insertDb(self):
         self.cst = 1
         bgdc(lang(30000),lang(30051))
@@ -518,14 +518,35 @@ class dbEnterExit:
             self.entry = self.sql.exeCute('all_special','','all')
             ep.writeTree(self.entry)
         elif category == 'quikchk2':
-            self.entry = self.sql.exeCute('fw_special',xbmc.getInfoLabel("ListItem.FileNameAndPath"),'one')
-            if self.entry is None:
-                home.clearProperty('sf_item')
-                home.clearProperty('sf_info')
+            self.item = xbmc.getInfoLabel('ListItem.label')
+            if not home.getProperty('SpecialFeatures.Listitem') == self.item:
+                home.setProperty('SpecialFeatures.Listitem',self.item)
+                if xbmc.getInfoLabel('ListItem.DBTYPE') == 'movie':
+                    self.entry = self.sql.exeCute('fw_special',xbmc.getInfoLabel("ListItem.FileNameAndPath"),'one')
+                    if self.entry is None:
+                        home.clearProperty('SpecialFeatures.Path')
+                        home.clearProperty('SpecialFeatures.Visible')
+                    else:
+                        self.url = self.get_url(directory='files', item=xbmc.getInfoLabel("ListItem.FileNameAndPath"), category='videos')
+                        home.setProperty('SpecialFeatures.Path',self.url)
+                        home.setProperty('SpecialFeatures.Visible','true')
+                if xbmc.getInfoLabel('ListItem.DBTYPE') == 'tvshow':
+                    if xbmc.getInfoLabel('System.CurrentWindow') == 'Video info':
+                        self.entry = self.sql.exeCute('fw_special',xbmc.getInfoLabel("ListItem.FileNameAndPath"),'one')
+                        self.url = self.get_url(directory='files', item=xbmc.getInfoLabel("ListItem.FileNameAndPath"), category='videos')
+                    else:
+                        self.entry = self.sql.exeCute('fw_special',xbmc.getInfoLabel("ListItem.Path"),'one')
+                        self.url = self.get_url(directory='files', item=xbmc.getInfoLabel("ListItem.Path"), category='videos')
+
+                    if self.entry is None:
+                        home.clearProperty('SpecialFeatures.Path')
+                        home.clearProperty('SpecialFeatures.Visible')
+                    else:
+                        home.setProperty('SpecialFeatures.Path',self.url)
+                        home.setProperty('SpecialFeatures.Visible','true')
             else:
-                self.url = self.get_url(directory='files', item=xbmc.getInfoLabel("ListItem.FileNameAndPath"), category='videos')
-                home.setProperty('sf_item',self.url)
-                home.setProperty('sf_info','true')
+                return
+
     def get_url(self,**kwargs):
         return '{0}?{1}'.format("plugin://plugin.specialfeatures/",urlencode(kwargs))
     def quckEdit(self):

@@ -10,6 +10,7 @@
 		<setting label="30013" type='bool' id="showalldir" default="true"/>
 		<setting label="30014" type='bool' id="moviedir" default="true"/>
 		<setting label="30015" type='bool' id="tvshowdir" default="true"/>
+		<setting label="30016" type='bool' id="showcon" default="false"/>
 		<!-- <setting label="30029" type='bool' id="aclndb" visible="false" default="false"/>
 		<setting label="30030" type='bool' id="aupdb" visible="false" default="false"/> -->
 	</category>

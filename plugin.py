@@ -14,13 +14,13 @@ class plugRoutine:
         self.var()
         if self.params:
             if self.params.get('directory')=='movies':
-                home.setProperty('sf_here','movies')
+                # home.setProperty('sf_here','movies')
                 vw.cATEgory(self.params['directory'])
             elif self.params.get('directory')=='tvshows':
-                home.setProperty('sf_here','tvshows')
+                # home.setProperty('sf_here','tvshows')
                 vw.cATEgory(self.params['directory'])
             elif self.params.get('directory')=='all':
-                home.setProperty('sf_here','all')
+                # home.setProperty('sf_here','all')
                 vw.cATEgory(self.params['directory'])
             elif self.params.get('directory')=='files':
                 vw.iteMList(self.params['item'],self.category)

@@ -39,7 +39,7 @@ While the long-term goal is to see every skin supporting Special Features native
 - [x] Amber
 - [x] AppTV
 - [x] Arctic Zephyr
- - [x] Bello 6
+- [x] Bello 6
 - [x] Black Glass Nova
 - [x] Box
 - [x] Chroma
@@ -54,7 +54,7 @@ If you use one of these skins, you can add a handy button to video info pages fo
 
 ### Context Menu Access
 
-Originally, Special Features were accessed through a context menu entry. This method was dropped to prevent adding to the existing clutter of context menus and in the hopes of providing a more intuitive, streamlined solution. However, given that patches are not available for all themes, the context menu may be coming back as a togglable option.
+Originally, Special Features were accessed through a context menu entry. This method was dropped to prevent adding to the existing clutter of context menus and in the hopes of providing a more intuitive, streamlined solution. However, given that patches are not available for all themes, the context menu is back as a togglable option.
 
 ## Recommended Advanced User Settings
 
