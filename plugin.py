@@ -146,7 +146,7 @@ class Views:
             self.folder = self.DbEE.initDb(category)
             if not len(self.folder)>0:
                 if dialog.yesno(lang(30000),lang(30056)) == 1:
-                    xbmc.executebuiltin("RunScript(plugin.specialfeatures,scandb)")
+                    xbmc.executebuiltin("RunScript(plugin.video.specialfeatures,scandb)")
                 else:
                     exit()
             else:
@@ -178,7 +178,7 @@ class Views:
             self.folder = self.DbEE.initDb('tvshows')
             if not len(self.folder)>0:
                 if dialog.yesno(lang(30000),lang(30056)) == 1:
-                    xbmc.executebuiltin("RunScript(plugin.specialfeatures,scandb)")
+                    xbmc.executebuiltin("RunScript(plugin.video.specialfeatures,scandb)")
                 else:
                     exit()
             else:
@@ -223,7 +223,7 @@ class Views:
                 self.litem.setCast(self.item['cast'])
                 self.litem.setInfo('video',{'title':self.t, 'plot': self.p,'path':self.f,'sorttitle':self.st})
                 self.is_folder  = False
-                self.litem.addContextMenuItems([('Manage...', 'RunScript(plugin.specialfeatures,editinfo)',)])
+                self.litem.addContextMenuItems([('Manage...', 'RunScript(plugin.video.specialfeatures,editinfo)',)])
                 self.litem.setContentLookup(True) 
                 # xbmc.getCacheThumbName(self.f)
                 self.litem.setProperty('IsPlayable', 'true')
@@ -258,7 +258,7 @@ class Views:
                 self.litem.setCast(self.item['cast'])
                 self.litem.setInfo('video',{'title':self.t, 'plot': self.p,'path':self.f,'sorttitle':self.st})
                 self.is_folder  = False
-                self.litem.addContextMenuItems([('Manage...', 'RunScript(plugin.specialfeatures,editinfo)',)])
+                self.litem.addContextMenuItems([('Manage...', 'RunScript(plugin.video.specialfeatures,editinfo)',)])
                 self.litem.setContentLookup(True) 
                 # xbmc.getCacheThumbName(self.f)
                 self.litem.setProperty('IsPlayable', 'true')

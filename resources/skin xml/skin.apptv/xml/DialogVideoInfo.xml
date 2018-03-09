@@ -518,7 +518,7 @@
 				<texturefocus>button-info-trailer-focus.png</texturefocus>
 				<texturenofocus>button-info-trailer.png</texturenofocus>
 				<onclick>Dialog.Close(movieinformation)</onclick>
-				<onclick>RunScript(plugin.specialfeatures,listitem)</onclick>
+				<onclick>RunScript(plugin.video.specialfeatures,listitem)</onclick>
 				<visible>String.IsEqual(Window(home).Property(SpecialFeatures.Visible),true)</visible>
 			</control>
 			<control type="group" id="905">

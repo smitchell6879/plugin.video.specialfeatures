@@ -1,3 +1,4 @@
+
 from lib.sys_init import *
 from lib.iteration import *
 from lib.importexport import *
@@ -29,7 +30,7 @@ class Routines:
         else:   
             xbmc.executebuiltin('ActivateWindow(videos, {} ,return)'.format(self.url))    
     def get_url(self,**kwargs):
-        return '{0}?{1}'.format("plugin://plugin.specialfeatures/",urlencode(kwargs))
+        return '{0}?{1}'.format("plugin://plugin.video.specialfeatures/",urlencode(kwargs))
 
 
 
