@@ -398,7 +398,7 @@
 						<param name="icon" value="icons/infodialogs/cinema.png" />
 						<param name="label" value="Special Features" />
 						<param name="onclick_1" value="Action(close)" />
-						<param name="onclick_2" value="RunScript(plugin.specialfeatures,listitem)" />
+						<param name="onclick_2" value="RunScript(plugin.video.specialfeatures,listitem)" />
 						<param name="visible" value="String.IsEqual(Window(home).Property(SpecialFeatures.Visible),true)" />
 					</include>
 					<include content="InfoDialogButton">

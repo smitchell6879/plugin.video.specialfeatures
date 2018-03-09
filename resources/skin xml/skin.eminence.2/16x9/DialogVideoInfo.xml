@@ -464,7 +464,7 @@
                             <label>Special Features</label>
                             <include>Defs_OptionButton3</include>
                             <onclick>Action(close)</onclick>
-                            <onclick>RunScript(plugin.specialfeatures,listitem)</onclick>
+                            <onclick>RunScript(plugin.video.specialfeatures,listitem)</onclick>
                             <visible>String.IsEqual(Window(home).Property(SpecialFeatures.Visible),true)</visible>
                         </control>
                         

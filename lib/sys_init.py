@@ -65,8 +65,8 @@ dialbg     = xbmcgui.DialogProgressBG()
 dialog     = xbmcgui.Dialog()        
 
 ''' Plugin'''
-urlhandle  = "plugin://plugin.specialfeatures/?"
-althandle  = "plugin://plugin.specialfeatures/" 
+urlhandle  = "plugin://plugin.video.specialfeatures/?"
+althandle  = "plugin://plugin.video.specialfeatures/" 
 
 '''XBMC'''
 monitor    = xbmc.Monitor()
