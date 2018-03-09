@@ -1075,7 +1075,7 @@
                         <label>Special Features</label>
                         <include>LeftMenuButton</include>
                         <onclick>Dialog.Close(MovieInformation)</onclick>
-                        <onclick>RunScript(plugin.specialfeatures,listitem)</onclick>
+                        <onclick>RunScript(plugin.video.specialfeatures,listitem)</onclick>
                         <visible>String.IsEqual(Window(home).Property(SpecialFeatures.Visible),true)</visible>
                         <onright>9009</onright>
                     </control>

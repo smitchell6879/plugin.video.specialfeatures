@@ -554,7 +554,7 @@ class dbEnterExit:
                 return
 
     def get_url(self,**kwargs):
-        return '{0}?{1}'.format("plugin://plugin.specialfeatures/",urlencode(kwargs))
+        return '{0}?{1}'.format("plugin://plugin.video.specialfeatures/",urlencode(kwargs))
     def quckEdit(self):
         self.qvar=unquote(xbmc.getInfoLabel("Container.FolderPath")).split('=')[3],xbmc.getInfoLabel("Container().ListItem().Label")
         self.bonus = dbEnterExit().initDb('quikchk',self.qvar)

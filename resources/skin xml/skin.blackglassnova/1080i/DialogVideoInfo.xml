@@ -998,7 +998,7 @@
                         <description>Special Features</description>
                         <onleft>9009</onleft>
                         <onclick>Action(close)</onclick>
-                        <onclick>RunScript(plugin.specialfeatures,listitem)</onclick>
+                        <onclick>RunScript(plugin.video.specialfeatures,listitem)</onclick>
                     </control>
                     <control type="togglebutton" id="9010">
                         <visible>System.HasAddon(script.extendedinfo)</visible>

@@ -227,7 +227,7 @@
         <align>center</align>
         <label>Special Features</label>
         <onclick>Action(close)</onclick>
-        <onclick>RunScript(plugin.specialfeatures,listitem)</onclick>
+        <onclick>RunScript(plugin.video.specialfeatures,listitem)</onclick>
         <visible>String.IsEqual(Window(home).Property(SpecialFeatures.Visible),true)</visible>
       </control>
       <control type="button" id="299" description="Cinema">

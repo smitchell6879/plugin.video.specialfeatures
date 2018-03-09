@@ -459,7 +459,7 @@
 					<textcolor>ffdadada</textcolor>
 					<focusedcolor>ff222222</focusedcolor>
 					<onclick>Action(close)</onclick>
-					<onclick>RunScript(plugin.specialfeatures,listitem)</onclick>
+					<onclick>RunScript(plugin.video.specialfeatures,listitem)</onclick>
 					<visible>String.IsEqual(Window(home).Property(SpecialFeatures.Visible),true)</visible>
 					<texturefocus border="13,5,6,8">views/button_fo.png</texturefocus>
 					<texturenofocus border="13,3,6,6">views/button_nf.png</texturenofocus>
