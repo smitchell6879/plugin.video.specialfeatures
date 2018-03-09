@@ -86,7 +86,7 @@ class Views:
         self.st = self.item['sorttitle']
     def constant(self):
         # self.litem.setContentLookup(False)
-        self.litem.setArt(self.item['art'])
+        # self.litem.setArt(self.item['art'])
         self.litem.setCast(self.item['cast'])
         self.litem.setInfo('video',{'title':self.t, 'year':self.y, 'plot': self.p,'path':self.f, 
                                     'rating':self.r, 'mpaa': self.m, 'dateadded':self.d,'premiered':self.p,
@@ -155,6 +155,7 @@ class Views:
                     self.litem     = xbmcgui.ListItem(label=self.item['title'])
                     self.itemVar()
                     self.constant()
+                    self.litem.setArt(self.item['art'])
                     if self.item.get('tvshowid') is None:
                         category = 'movies'
                     else:
@@ -189,6 +190,7 @@ class Views:
                     else:
                         category = 'tvshows'
                     self.is_folder  = True
+                    self.litem.setArt({'fanart':self.item['art'].get('fanart'),'poster':self.item['art'].get('poster')})
                     self.url        = self.get_url(directory='files', item=self.item['file'], category=category)
                     self.litem.setProperty('IsPlayable', 'false')
                     xbmcplugin.addDirectoryItem(self.handle, self.url, self.litem, self.is_folder)
