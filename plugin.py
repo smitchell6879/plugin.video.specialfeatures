@@ -216,6 +216,8 @@ class Views:
                     self.litem.setArt({'fanart':self.item['art'].get('fanart'),'poster':self.item['art'].get('poster')})
                 elif os.path.splitext(self.f)[1] == '.IFO':
                     self.litem.setArt({'fanart':self.item['art'].get('fanart'),'poster':self.item['art'].get('poster')})
+                elif os.path.splitext(self.f)[1] == '.iso':
+                    self.litem.setArt({'fanart':self.item['art'].get('fanart'),'poster':self.item['art'].get('poster')})
                 else:
                     self.litem.setArt({'fanart':self.item['art'].get('fanart'),'thumb':self.item['art'].get('thumb')})
                 self.litem.setCast(self.item['cast'])
