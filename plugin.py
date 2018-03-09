@@ -24,6 +24,8 @@ class plugRoutine:
                 vw.cATEgory(self.params['directory'])
             elif self.params.get('directory')=='files':
                 vw.iteMList(self.params['item'],self.category)
+            elif self.params.get('directory')=='widget':
+                vw.wiDGet(self.params['item'],self.category)
             elif self.params.get('action')=='play':
                 pl.plaYVideo(self.params['video'])
             elif self.params.get('action')=='playall':
@@ -236,9 +238,34 @@ class Views:
                     xbmcplugin.addDirectoryItem(self.handle,self.url, self.playall, self.is_folder)
             xbmcplugin.addSortMethod(self.handle, xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE )
             xbmcplugin.endOfDirectory(self.handle)
+    def wiDGet(self,item,category):
+            self.vAr()
+            self.files = self.DbEE.initDb('file',item)
+            for self.item in self.files:
+                self.f = self.item['path']
+                self.litem     = xbmcgui.ListItem(label=self.item['title'], path=self.f)
+                self.t = self.item['title']
+                self.p = self.item['plot']
+                self.st = self.item['sorttitle']
+                if os.path.splitext(self.f)[1] == '.bdmv':
+                    self.litem.setArt({'fanart':self.item['art'].get('fanart'),'poster':self.item['art'].get('poster')})
+                elif os.path.splitext(self.f)[1] == '.IFO':
+                    self.litem.setArt({'fanart':self.item['art'].get('fanart'),'poster':self.item['art'].get('poster')})
+                else:
+                    self.litem.setArt({'fanart':self.item['art'].get('fanart'),'thumb':self.item['art'].get('thumb')})
+                self.litem.setCast(self.item['cast'])
+                self.litem.setInfo('video',{'title':self.t, 'plot': self.p,'path':self.f,'sorttitle':self.st})
+                self.is_folder  = False
+                self.litem.addContextMenuItems([('Manage...', 'RunScript(plugin.specialfeatures,editinfo)',)])
+                self.litem.setContentLookup(True) 
+                # xbmc.getCacheThumbName(self.f)
+                self.litem.setProperty('IsPlayable', 'true')
+                xbmcplugin.addDirectoryItem(self.handle, self.f, self.litem, self.is_folder)
+            xbmcplugin.setContent(self.handle, category)
+            xbmcplugin.addSortMethod(self.handle, xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE )
+            xbmcplugin.endOfDirectory(self.handle)
     def get_url(self,**kwargs):
         return '{0}?{1}'.format(self.url,urlencode(kwargs))
-   
 class Player:
     def var(self):
         self._url           = sys.argv[0]
@@ -269,10 +296,6 @@ class Player:
             playL.add(url=self.item.get('path'))
         xbmc.executebuiltin('Action(Fullscreen)') 
         xbmc.Player().play(playL,startpos=-1)
-
-
-
-
 if __name__ =='__main__':
     plugRoutine(sys.argv)
 

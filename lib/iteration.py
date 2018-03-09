@@ -525,24 +525,30 @@ class dbEnterExit:
                     self.entry = self.sql.exeCute('fw_special',xbmc.getInfoLabel("ListItem.FileNameAndPath"),'one')
                     if self.entry is None:
                         home.clearProperty('SpecialFeatures.Path')
+                        home.clearProperty('SpecialFeatures.Widget')
                         home.clearProperty('SpecialFeatures.Visible')
                     else:
                         self.url = self.get_url(directory='files', item=xbmc.getInfoLabel("ListItem.FileNameAndPath"), category='videos')
+                        self.widget = self.get_url(directory='widget', item=xbmc.getInfoLabel("ListItem.FileNameAndPath"), category='videos')
                         home.setProperty('SpecialFeatures.Path',self.url)
+                        home.setProperty('SpecialFeatures.Widget',self.widget)
                         home.setProperty('SpecialFeatures.Visible','true')
                 if xbmc.getInfoLabel('ListItem.DBTYPE') == 'tvshow':
                     if xbmc.getInfoLabel('System.CurrentWindow') == 'Video info':
                         self.entry = self.sql.exeCute('fw_special',xbmc.getInfoLabel("ListItem.FileNameAndPath"),'one')
                         self.url = self.get_url(directory='files', item=xbmc.getInfoLabel("ListItem.FileNameAndPath"), category='videos')
+                        self.widget = self.get_url(directory='widget', item=xbmc.getInfoLabel("ListItem.FileNameAndPath"), category='videos')
                     else:
                         self.entry = self.sql.exeCute('fw_special',xbmc.getInfoLabel("ListItem.Path"),'one')
                         self.url = self.get_url(directory='files', item=xbmc.getInfoLabel("ListItem.Path"), category='videos')
-
+                        self.widget = self.get_url(directory='widget', item=xbmc.getInfoLabel("ListItem.Path"), category='videos')
                     if self.entry is None:
                         home.clearProperty('SpecialFeatures.Path')
+                        home.clearProperty('SpecialFeatures.Widget')
                         home.clearProperty('SpecialFeatures.Visible')
                     else:
                         home.setProperty('SpecialFeatures.Path',self.url)
+                        home.setProperty('SpecialFeatures.Widget',self.widget)
                         home.setProperty('SpecialFeatures.Visible','true')
             else:
                 return
