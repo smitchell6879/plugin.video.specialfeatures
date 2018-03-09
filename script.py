@@ -24,8 +24,10 @@ class Routines:
         dbEnterExit().initDb('export')
     def listItem(self):
         self.url =home.getProperty('SpecialFeatures.Path')
-        # self.url = self.get_url(directory='files', item=home.getProperty('SpecialFeatures.Path'), category=xbmc.getInfoLabel("ListItem.DBTYPE"))
-        xbmc.executebuiltin('ActivateWindow(videos, {} ,return)'.format(self.url))    
+        if xbmc.getInfoLabel('System.CurrentWindow') == 'Videos':
+            xbmc.executebuiltin('Container.Update({})'.format(self.url))
+        else:   
+            xbmc.executebuiltin('ActivateWindow(videos, {} ,return)'.format(self.url))    
     def get_url(self,**kwargs):
         return '{0}?{1}'.format("plugin://plugin.specialfeatures/",urlencode(kwargs))
 
@@ -48,6 +50,7 @@ if __name__ == '__main__':
         elif sys.argv[1] == 'editinfo':
             r.editInfo()
         elif sys.argv[1] == 'test':
+            xbmc()
             text('Done')
     else:
         xbmc.executebuiltin('Addon.OpenSettings({})'.format(addonid))
