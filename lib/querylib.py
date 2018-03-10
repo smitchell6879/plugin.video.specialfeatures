@@ -148,7 +148,7 @@ class Build:
                     #INSERT
                  'in_tvshows'   : 'INSERT INTO tvshows VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',
                  'in_movies'    : 'INSERT INTO movies VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)',
-                 'in_special'   : 'INSERT INTO special VALUES (%s,%s,%s,%s,%s)',
+                 'in_special'   : 'INSERT INTO special VALUES (%s,%s,%s,%s,%s,%s)',
                  'in_art'       : 'INSERT INTO art VALUES (%s,%s,%s)',
                  'in_cast'      : 'INSERT INTO cast VALUES (%s,%s,%s,%s,%s)',
                     #UPDATE
