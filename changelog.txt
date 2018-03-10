@@ -1,3 +1,12 @@
+031018  Changed TVshow Content type to episodes
+		Fixed Context Menu, Widget, Video Info to work on Home Screen
+		Bug Fix
+		Slowdown the service to decrease cpu load. 
+030918 	Updated Nomenclature
+		Fixed Bugs
+		Added Widget
+		Added Context Menu Back
+030818 	Merged Skin Additions and Readme from evertiro
 021618  Added support for tv show extras
 		Added Show all option
 		Add .sfnfo Support import/export

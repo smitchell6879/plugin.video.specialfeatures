@@ -51,7 +51,7 @@ if __name__ == '__main__':
         elif sys.argv[1] == 'editinfo':
             r.editInfo()
         elif sys.argv[1] == 'test':
-            xbmc()
+           
             text('Done')
     else:
         xbmc.executebuiltin('Addon.OpenSettings({})'.format(addonid))
