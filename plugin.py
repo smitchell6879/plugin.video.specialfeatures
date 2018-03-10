@@ -1,6 +1,5 @@
 from lib.sys_init import *
 from lib.iteration import *
-from PIL import Image
 
 
 
@@ -206,6 +205,8 @@ class Views:
     def iteMList(self,item,category):
             self.vAr()
             self.files = self.DbEE.initDb('file',item)
+            if category == 'tvshows':
+                category = 'episodes'
             for self.item in self.files:
                 self.f = self.item['path']
                 self.litem     = xbmcgui.ListItem(label=self.item['title'], path=self.f)
@@ -232,7 +233,8 @@ class Views:
             if len(self.files) > 1:
                 if playall == 'true':
                     self.playall = xbmcgui.ListItem(label=lang(30054))
-                    self.playall.setArt(self.item['art'])
+                    # self.playall.setArt(self.item['art'])
+                    self.playall.setArt({'fanart':self.item['art'].get('fanart'),'poster':self.item['art'].get('poster')})
                     self.playall.setCast(self.item['cast'])
                     self.playall.setInfo('video',{'plot':lang(30055)})
                     self.playall.setProperty('IsPlayable', 'true')
@@ -243,6 +245,8 @@ class Views:
     def wiDGet(self,item,category):
             self.vAr()
             self.files = self.DbEE.initDb('file',item)
+            if category == 'tvshows':
+                category = 'episodes'
             for self.item in self.files:
                 self.f = self.item['path']
                 self.litem     = xbmcgui.ListItem(label=self.item['title'], path=self.f)
@@ -253,19 +257,21 @@ class Views:
                     self.litem.setArt({'fanart':self.item['art'].get('fanart'),'poster':self.item['art'].get('poster')})
                 elif os.path.splitext(self.f)[1] == '.IFO':
                     self.litem.setArt({'fanart':self.item['art'].get('fanart'),'poster':self.item['art'].get('poster')})
+                elif os.path.splitext(self.f)[1] == '.iso':
+                    self.litem.setArt({'fanart':self.item['art'].get('fanart'),'poster':self.item['art'].get('poster')})
                 else:
                     self.litem.setArt({'fanart':self.item['art'].get('fanart'),'thumb':self.item['art'].get('thumb')})
                 self.litem.setCast(self.item['cast'])
                 self.litem.setInfo('video',{'title':self.t, 'plot': self.p,'path':self.f,'sorttitle':self.st})
                 self.is_folder  = False
-                self.litem.addContextMenuItems([('Manage...', 'RunScript(plugin.video.specialfeatures,editinfo)',)])
+                # self.litem.addContextMenuItems([('Manage...', 'RunScript(plugin.video.specialfeatures,editinfo)',)])
                 self.litem.setContentLookup(True) 
-                # xbmc.getCacheThumbName(self.f)
                 self.litem.setProperty('IsPlayable', 'true')
                 xbmcplugin.addDirectoryItem(self.handle, self.f, self.litem, self.is_folder)
             xbmcplugin.setContent(self.handle, category)
             xbmcplugin.addSortMethod(self.handle, xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE )
             xbmcplugin.endOfDirectory(self.handle)
+   
     def get_url(self,**kwargs):
         return '{0}?{1}'.format(self.url,urlencode(kwargs))
 class Player:

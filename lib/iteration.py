@@ -518,40 +518,39 @@ class dbEnterExit:
             self.entry = self.sql.exeCute('all_special','','all')
             ep.writeTree(self.entry)
         elif category == 'quikchk2':
-            self.item = xbmc.getInfoLabel('ListItem.label')
-            if not home.getProperty('SpecialFeatures.Listitem') == self.item:
-                home.setProperty('SpecialFeatures.Listitem',self.item)
-                if xbmc.getInfoLabel('ListItem.DBTYPE') == 'movie':
-                    self.entry = self.sql.exeCute('fw_special',xbmc.getInfoLabel("ListItem.FileNameAndPath"),'one')
-                    if self.entry is None:
-                        home.clearProperty('SpecialFeatures.Path')
-                        home.clearProperty('SpecialFeatures.Widget')
-                        home.clearProperty('SpecialFeatures.Visible')
-                    else:
-                        self.url = self.get_url(directory='files', item=xbmc.getInfoLabel("ListItem.FileNameAndPath"), category='videos')
-                        self.widget = self.get_url(directory='widget', item=xbmc.getInfoLabel("ListItem.FileNameAndPath"), category='videos')
-                        home.setProperty('SpecialFeatures.Path',self.url)
-                        home.setProperty('SpecialFeatures.Widget',self.widget)
-                        home.setProperty('SpecialFeatures.Visible','true')
-                if xbmc.getInfoLabel('ListItem.DBTYPE') == 'tvshow':
-                    if xbmc.getInfoLabel('System.CurrentWindow') == 'Video info':
-                        self.entry = self.sql.exeCute('fw_special',xbmc.getInfoLabel("ListItem.FileNameAndPath"),'one')
-                        self.url = self.get_url(directory='files', item=xbmc.getInfoLabel("ListItem.FileNameAndPath"), category='videos')
-                        self.widget = self.get_url(directory='widget', item=xbmc.getInfoLabel("ListItem.FileNameAndPath"), category='videos')
-                    else:
-                        self.entry = self.sql.exeCute('fw_special',xbmc.getInfoLabel("ListItem.Path"),'one')
-                        self.url = self.get_url(directory='files', item=xbmc.getInfoLabel("ListItem.Path"), category='videos')
-                        self.widget = self.get_url(directory='widget', item=xbmc.getInfoLabel("ListItem.Path"), category='videos')
-                    if self.entry is None:
-                        home.clearProperty('SpecialFeatures.Path')
-                        home.clearProperty('SpecialFeatures.Widget')
-                        home.clearProperty('SpecialFeatures.Visible')
-                    else:
-                        home.setProperty('SpecialFeatures.Path',self.url)
-                        home.setProperty('SpecialFeatures.Widget',self.widget)
-                        home.setProperty('SpecialFeatures.Visible','true')
-            else:
-                return
+            self.dbt = xbmc.getInfoLabel('Container({}).ListItem().DBTYPE'.format(xbmc.getInfoLabel('System.CurrentControlID')))
+            self.fnp = xbmc.getInfoLabel('Container({}).ListItem().FileNameAndPath'.format(xbmc.getInfoLabel('System.CurrentControlID')))
+            self.p = xbmc.getInfoLabel('Container({}).ListItem().Path'.format(xbmc.getInfoLabel('System.CurrentControlID')))
+            if self.dbt == 'movie':
+                self.entry = self.sql.exeCute('fw_special',self.fnp,'one')
+                if self.entry is None:
+                    home.clearProperty('SpecialFeatures.Path')
+                    home.clearProperty('SpecialFeatures.Widget')
+                    home.clearProperty('SpecialFeatures.Visible')
+                else:
+                    self.url = self.get_url(directory='files', item=self.fnp, category='movie')
+                    self.widget = self.get_url(directory='widget', item=self.fnp, category='movie')
+                    home.setProperty('SpecialFeatures.Path',self.url)
+                    home.setProperty('SpecialFeatures.Widget',self.widget)
+                    home.setProperty('SpecialFeatures.Visible','true')
+            if self.dbt == 'tvshow':
+                if xbmc.getInfoLabel('System.CurrentWindow') == 'Video info':
+                    self.entry = self.sql.exeCute('fw_special',self.fnp,'one')
+                    self.url = self.get_url(directory='files', item=self.fnp, category='tvshow')
+                    self.widget = self.get_url(directory='widget', item=self.fnp, category='tvshow')
+                else:
+                    self.entry = self.sql.exeCute('fw_special',self.p,'one')
+                    self.url = self.get_url(directory='files', item=self.p, category='tvshow')
+                    self.widget = self.get_url(directory='widget', item=self.p, category='tvshow')
+                if self.entry is None:
+                    home.clearProperty('SpecialFeatures.Path')
+                    home.clearProperty('SpecialFeatures.Widget')
+                    home.clearProperty('SpecialFeatures.Visible')
+                else:
+                    home.setProperty('SpecialFeatures.Path',self.url)
+                    home.setProperty('SpecialFeatures.Widget',self.widget)
+                    home.setProperty('SpecialFeatures.Visible','true')
+            return
 
     def get_url(self,**kwargs):
         return '{0}?{1}'.format("plugin://plugin.video.specialfeatures/",urlencode(kwargs))
