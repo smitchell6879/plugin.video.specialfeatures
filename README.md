@@ -1,6 +1,6 @@
 # plugin.video.specialfeatures
 
-[![GitHub release](https://img.shields.io/github/release/smitchell6879/plugin.video.specialfeatures.svg)](https://github.com/smitchell6879/plugin.video.specialfeatures/releases/latest) [![GitHub tag](https://img.shields.io/github/tag/smitchell6879/plugin.video.specialfeatures.svg)](https://github.com/smitchell6879/plugin.video.specialfeatures/releases) [![license](https://img.shields.io/github/license/smitchell6879/plugin.video.specialfeatures.svg)](https://github.com/smitchell6879/plugin.video.specialfeatures/blob/Alpha-Features/LICENSE)
+[![](https://img.shields.io/badge/supports-kodi%2017%20|%2018-blue.svg)](https://forum.kodi.tv/showthread.php?tid=327042) [![GitHub release](https://img.shields.io/github/release/smitchell6879/plugin.video.specialfeatures.svg)](https://github.com/smitchell6879/plugin.video.specialfeatures/releases/latest) [![GitHub tag](https://img.shields.io/github/tag/smitchell6879/plugin.video.specialfeatures.svg)](https://github.com/smitchell6879/plugin.video.specialfeatures/releases) [![license](https://img.shields.io/github/license/smitchell6879/plugin.video.specialfeatures.svg)](https://github.com/smitchell6879/plugin.video.specialfeatures/blob/Alpha-Features/LICENSE)
 
 ### Welcome!
 
