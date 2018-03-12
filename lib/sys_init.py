@@ -71,7 +71,7 @@ althandle  = "plugin://plugin.video.specialfeatures/"
 '''XBMC'''
 monitor    = xbmc.Monitor()
 playL      = xbmc.PlayList(xbmc.PLAYLIST_VIDEO)
-play       = xbmc.Player()
+playr       = xbmc.Player()
 
 '''General'''
 winid      = {'window':"{}".format(xbmc.getInfoLabel('System.CurrentWindow'))}

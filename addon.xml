@@ -2,7 +2,7 @@
 <addon id="plugin.video.specialfeatures"
 version="2.0.5"
 name="Special Features"
-provider-name="smitchell6879">
+provider-name="smitchell6879, evertiro">
 <requires>
   <import addon="xbmc.python" version="2.24.0"/>
   <import addon="xbmc.json" version="8.0.0"/>
@@ -22,9 +22,9 @@ provider-name="smitchell6879">
   <provides>video</provides>
 </extension>
 <extension point="xbmc.addon.metadata">
-  <summary lang="en"></summary>
-  <description lang="en"></description>
-  <disclaimer lang="en"></disclaimer>
+  <summary lang="en">Given a properly structured 'Extras' directory, this addon will present all of the bonus media in your library.</summary>
+  <description lang="en">Special Features is inspired by the upcoming Blu-ray features being introduced in Kodi 18. Given a properly structured 'Extras' directory, this addon will present all of the bonus videos, discs and alternate versions of the movies and tv shows in your library.</description>
+  <disclaimer lang="en">Kodi 17/18 Required</disclaimer>
   <assets>
     <icon>icon.png</icon>
     <fanart>fanart.jpg</fanart>

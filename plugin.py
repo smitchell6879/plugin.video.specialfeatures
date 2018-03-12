@@ -295,15 +295,40 @@ class Player:
         self.var()
         playL.clear()
         self.files = self.DbEE.initDb('file',category)
+        self.f = self.files[0].get('path')
+        self.item_one = xbmcgui.ListItem(path=self.f)
+        self.item_one.setInfo('video',{'title':self.files[0].get('title'),'plot':self.files[0].get('plot'),'sorttitle':self.files[0].get('sorttitle')})
+        info(self.files[0].get('art'))
+        self.item_one.setCast(self.files[0].get('cast'))
+        if os.path.splitext(self.f)[1] == '.bdmv':
+            self.item_one.setArt({'fanart':self.files[0].get('art').get('fanart'),'poster':self.files[0].get('art').get('poster')})
+        elif os.path.splitext(self.f)[1] == '.IFO':
+            self.item_one.setArt({'fanart':self.files[0].get('art').get('fanart'),'poster':self.files[0].get('art').get('poster')})
+        elif os.path.splitext(self.f)[1] == '.iso':
+            self.item_one.setArt({'fanart':self.files[0].get('art').get('fanart'),'poster':self.files[0].get('art').get('poster')})
+        else:
+            self.item_one.setArt({'fanart':self.files[0].get('art').get('fanart'),'thumb':self.files[0].get('art').get('thumb')})
+        playr.play(item=self.f, listitem=self.item_one)
+        xbmcplugin.setResolvedUrl(self._handle, True, listitem=self.item_one)
+        if not xbmc.executebuiltin('Window.IsActive(fullscreenvideo)'):
+            xbmc.executebuiltin('Action(Fullscreen)')
         for self.item in self.files:
-            self.litem = xbmcgui.ListItem(self.item.get('title'))
-            self.title  = self.item.get('title')
-            self.litem.setInfo('video',{'title':self.item.get('title'), 'label':self.item.get('title')})
-            self.litem.setCast(self.item.get('cast'))
-            self.litem.setArt(self.item.get('art'))
-            playL.add(url=self.item.get('path'))
-        xbmc.executebuiltin('Action(Fullscreen)') 
-        xbmc.Player().play(playL,startpos=-1)
+            if self.item != self.files[0]:
+                self.f = self.item.get('path')
+                self.litem = xbmcgui.ListItem(self.item.get('title'))
+                self.title  = self.item.get('title')
+                self.litem.setInfo('video',{'title':self.item.get('title'),'plot':self.item.get('plot'),'sorttitle':self.item.get('sorttitle')})
+                self.litem.setCast(self.item.get('cast'))
+                if os.path.splitext(self.f)[1] == '.bdmv':
+                    self.litem.setArt({'fanart':self.item.get('art').get('fanart'),'poster':self.item.get('art').get('poster')})
+                elif os.path.splitext(self.f)[1] == '.IFO':
+                    self.litem.setArt({'fanart':self.item.get('art').get('fanart'),'poster':self.item.get('art').get('poster')})
+                elif os.path.splitext(self.f)[1] == '.iso':
+                    self.litem.setArt({'fanart':self.item.get('art').get('fanart'),'poster':self.item.get('art').get('poster')})
+                else:
+                    self.litem.setArt({'fanart':self.item.get('art').get('fanart'),'thumb':self.item.get('art').get('thumb')})
+                playL.add(url=self.item.get('path'), listitem=self.litem)
+               
 if __name__ =='__main__':
     plugRoutine(sys.argv)
 
