@@ -285,16 +285,40 @@ class dbEnterExit:
         self.cst = 1
         bgdc(lang(30000),lang(30053))
         self.trAsh = list()
+        self.chkList = list()
+        self.query = 'movies'
+        self.query2 = 'tvshows'
+        self.result = QUERY().router(self.query)
+        self.result2 = QUERY().router(self.query2)
+        self.index = 0
+        try:
+            for self.item in self.result['result']['{}'.format(self.query)]:
+                self.chkList.append(self.item.get('file'))
+                self.index += 1
+        except:
+            info('No Movies')
+        try:
+            for self.item in self.result2['result']['{}'.format(self.query2)]:
+                self.chkList.append(self.item.get('file'))
+                self.index += 1
+        except:
+            info('No TV Shows') 
+        self.range = len(self.chkList)
+        info(self.chkList) 
+        info(self.range) 
         self.entry = self.sql.exeCute('all_special','','all')
         for self.item in self.entry:
             if mysql == 'true':
-                # self.verify = self.verIfy(self.item['file'])
                 self.verify = self.verIfy(self.item['bpath'])
                 if self.verify == 0:
+                    self.trAsh.append(self.item['bpath'])
+                if not self.item['file'] in self.chkList:
                     self.trAsh.append(self.item['bpath'])
             else:
                 self.verify = self.verIfy(self.item[2])
                 if self.verify == 0:
+                    self.trAsh.append(self.item[2])
+                if not self.item[0] in self.chkList:
                     self.trAsh.append(self.item[2])
         for self.item in self.trAsh:
             self.sql.exeCute('d_special2',self.item,'com2')

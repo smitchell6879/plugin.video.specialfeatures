@@ -1,6 +1,6 @@
 # plugin.video.specialfeatures
 
-[![GitHub release](https://img.shields.io/github/release/smitchell6879/plugin.video.specialfeatures.svg)](https://github.com/smitchell6879/plugin.video.specialfeatures/releases/latest) [![GitHub tag](https://img.shields.io/github/tag/smitchell6879/plugin.video.specialfeatures.svg)](https://github.com/smitchell6879/plugin.video.specialfeatures/releases) [![license](https://img.shields.io/github/license/smitchell6879/plugin.video.specialfeatures.svg)](https://github.com/smitchell6879/plugin.video.specialfeatures/blob/Alpha-Features/LICENSE)
+[![](https://img.shields.io/badge/supports-kodi%2017%20|%2018-blue.svg)](https://forum.kodi.tv/showthread.php?tid=327042) [![GitHub release](https://img.shields.io/github/release/smitchell6879/plugin.video.specialfeatures.svg)](https://github.com/smitchell6879/plugin.video.specialfeatures/releases/latest) [![GitHub tag](https://img.shields.io/github/tag/smitchell6879/plugin.video.specialfeatures.svg)](https://github.com/smitchell6879/plugin.video.specialfeatures/releases) [![license](https://img.shields.io/github/license/smitchell6879/plugin.video.specialfeatures.svg)](https://github.com/smitchell6879/plugin.video.specialfeatures/blob/Alpha-Features/LICENSE)
 
 ### Welcome!
 
@@ -33,7 +33,7 @@ This Extras folder can contain individual video clips, or full Blu-ray or DVD ri
 
 There are currently two ways to access Special Features. The 'builtin' method is to simply access the 'Special Features' addon directly. If any special features are available, they will be presented in a video list.
 
-While the long-term goal is to see every skin supporting Special Features natively, for now patches are available for many of the official skins in the ![skin xml](https://github.com/smitchell6879/plugin.video.specialfeatures/tree/Alpha-Features/resources/skin%20xml/) directory. The following skins are currently supported, with more being added as time permits:
+While the long-term goal is to see every skin supporting Special Features natively, for now patches are available for many of the official skins in the [skin xml](https://github.com/smitchell6879/plugin.video.specialfeatures/tree/Alpha-Features/resources/skin%20xml/) directory. The following skins are currently supported, with more being added as time permits:
 
 - [x] Aeon Nox Silvo
 - [x] Amber
@@ -58,7 +58,7 @@ Originally, Special Features were accessed through a context menu entry. This me
 
 ## Recommended Advanced User Settings
 
-Without tweaking your ![advanced settings](https://kodi.wiki/view/advancedsettings.xml), you will end up with all of your extras being unceremoniously dumped into your media library. To prevent this, it is recommended that you add the following block to your `advancedsettings.xml` file. The Advanced Settings file is not created by default, so you will likely have to add it yourself.
+Without tweaking your [advanced settings](https://kodi.wiki/view/advancedsettings.xml), you will end up with all of your extras being unceremoniously dumped into your media library. To prevent this, it is recommended that you add the following block to your `advancedsettings.xml` file. The Advanced Settings file is not created by default, so you will likely have to add it yourself.
 
 ```  
 <advancedsettings>
