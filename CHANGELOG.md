@@ -1,3 +1,8 @@
+== Release Beta 2.0.7 (031118) ==
+* Fixed: Home playall item to play first item in playlist
+* Fixed: Database Cleaner
+* Fixed: General bugfixes
+
 == Release Beta 2.0.6 (031018) ==
 * Fixed: Home screen support for context menu, widget and video info
 * Fixed: CPU load issues
