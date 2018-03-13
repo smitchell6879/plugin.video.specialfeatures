@@ -332,6 +332,8 @@ class dbEnterExit:
                     self.trAsh.append(self.item['file'])
                 if self.doublechk == None:
                     self.trAsh.append(self.item['file'])
+                if not self.item['file'] in self.chkList:
+                    self.trAsh.append(self.item['file'])
             else:
                 self.verify = self.verIfy(self.item[0])
                 self.doublechk = self.sql.exeCute('fw_special',self.item[0],'one')
@@ -339,14 +341,17 @@ class dbEnterExit:
                     self.trAsh.append(self.item[0])
                 if self.doublechk == None:
                     self.trAsh.append(self.item[0])
-        if len(trAsh)>0:
+                if not self.item[0] in self.chkList:
+                    self.trAsh.append(self.item[0])
+        if len(self.trAsh)>0:
             for self.item in self.trAsh:
-                self.pct = float(self.cst)/float(len(trAsh))*100
-                bgdu(int(self.pct),lang(30000),"{0} {1}{2}{3}".format(lang(30053),self.cst,lang(30052),len(trAsh)))
+                self.pct = float(self.cst)/float(len(self.trAsh))*100
+                bgdu(int(self.pct),lang(30000),"{0} {1}{2}{3}".format(lang(30053),self.cst,lang(30052),len(self.trAsh)))
                 self.sql.exeCute('d_movies',self.item,'com2')
                 self.sql.exeCute('d_art',self.item,'com2')
                 self.sql.exeCute('d_cast',self.item,'com2')
                 self.cst+=1
+        bgdcc()
         self.cst=1
         self.trAsh = list()
         self.entry = self.sql.exeCute('all_tvshows','','all')
@@ -358,6 +363,8 @@ class dbEnterExit:
                     self.trAsh.append(self.item['file'])
                 if self.doublechk == None:
                     self.trAsh.append(self.item['file'])
+                if not self.item['file'] in self.chkList:
+                    self.trAsh.append(self.item['file'])
             else:
                 self.verify = self.verIfy(self.item[0])
                 self.doublechk = self.sql.exeCute('fw_special',self.item[0],'one')
@@ -365,10 +372,12 @@ class dbEnterExit:
                     self.trAsh.append(self.item[0])
                 if self.doublechk == None:
                     self.trAsh.append(self.item[0])
+                if not self.item[0] in self.chkList:
+                    self.trAsh.append(self.item[0])
         if len(self.trAsh)>0:
             for self.item in self.trAsh:
                 self.pct = float(self.cst)/float(len(self.trAsh))*100
-                bgdu(int(self.pct),lang(30000),"{0} {1}{2}{3}".format(lang(30053),self.cst,lang(30052),len(trAsh)))
+                bgdu(int(self.pct),lang(30000),"{0} {1}{2}{3}".format(lang(30053),self.cst,lang(30052),len(self.trAsh)))
                 self.sql.exeCute('d_tvshows',self.item,'com2')
                 self.sql.exeCute('d_art',self.item,'com2')
                 self.sql.exeCute('d_cast',self.item,'com2')

@@ -123,7 +123,7 @@ class Build:
                  'd_tvshows'    : 'DELETE FROM tvshows WHERE file=?',
                  'd_movies'     : 'DELETE FROM movies WHERE file=?',
                  'd_special'    : 'DELETE FROM special WHERE file=?',
-                 'd_special2'    : 'DELETE FROM special WHERE bpath=?',
+                 'd_special2'   : 'DELETE FROM special WHERE bpath=?',
                  'd_art'        : 'DELETE FROM art WHERE file=?',
                  'd_cast'       : 'DELETE FROM cast WHERE file=?',
                 }
