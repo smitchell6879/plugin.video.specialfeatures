@@ -238,6 +238,7 @@ class Views:
                     self.playall.setCast(self.item['cast'])
                     self.playall.setInfo('video',{'plot':lang(30055)})
                     self.playall.setProperty('IsPlayable', 'true')
+                    self.playall.setProperty('PlayAll', 'true')
                     self.url = self.get_url(action='playall', item=item)
                     xbmcplugin.addDirectoryItem(self.handle,self.url, self.playall, self.is_folder)
             xbmcplugin.addSortMethod(self.handle, xbmcplugin.SORT_METHOD_VIDEO_SORT_TITLE )
