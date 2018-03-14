@@ -1,3 +1,7 @@
+== Release Beta 2.0.9 (031318) ==
+* Added: ListItem.Property(PlayAll)
+* Fixed: Context menu bug
+
 == Release Beta 2.0.7 (031118) ==
 * Fixed: Home playall item to play first item in playlist
 * Fixed: Database Cleaner
