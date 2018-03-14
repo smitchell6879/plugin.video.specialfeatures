@@ -51,6 +51,7 @@ if __name__ == '__main__':
         elif sys.argv[1] == 'editinfo':
             r.editInfo()
         elif sys.argv[1] == 'test':
+
            
             text('Done')
     else:
