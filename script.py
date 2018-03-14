@@ -51,8 +51,7 @@ if __name__ == '__main__':
         elif sys.argv[1] == 'editinfo':
             r.editInfo()
         elif sys.argv[1] == 'test':
-            text(xbmc.getInfoLabel('ListItem.Property(PlayAll)'))
-            text(xbmc.getInfoLabel('String.StartsWith(Container.FolderPath,plugin://plugin.video.specialfeatures)'))
+
            
             text('Done')
     else:
