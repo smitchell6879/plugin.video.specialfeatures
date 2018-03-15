@@ -7,6 +7,7 @@ provider-name="smitchell6879, evertiro">
   <import addon="xbmc.python" version="2.24.0"/>
   <import addon="xbmc.json" version="8.0.0"/>
   <import addon="script.module.future" version="0.0.1"/> 
+  <import addon="script.module.pymysql" version="0.8.0"/> 
 </requires>
 <extension point="kodi.context.item">
     <menu id="kodi.core.main">

@@ -2,8 +2,6 @@
 from lib.sys_init import *
 from lib.iteration import *
 from lib.importexport import *
-import urllib2
-from hashlib import md5
 
 
 
