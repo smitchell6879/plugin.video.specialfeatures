@@ -1,5 +1,7 @@
+
 == Release (Official) 3.0.0 (031418) ==
 * Submitted to Official Kodi Repo
+* Removes PyMySql script.module.pymysql is now required
 
 == Release Beta 2.0.9 (031318) ==
 * Added: ListItem.Property(PlayAll)
