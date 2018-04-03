@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <addon id="plugin.video.specialfeatures"
-version="3.0.1"
+version="3.0.2"
 name="Special Features"
 provider-name="smitchell6879, evertiro">
 <requires>
   <import addon="xbmc.python" version="2.25.0"/>
-  <import addon="script.module.future" version="0.0.1"/> 
-  <import addon="script.module.pymysql" version="0.8.0"/> 
+  <import addon="script.module.future" version="0.0.1"/>
+  <import addon="script.module.pymysql" version="0.8.0"/>
 </requires>
 <extension point="kodi.context.item">
     <menu id="kodi.core.main">
@@ -30,7 +30,7 @@ provider-name="smitchell6879, evertiro">
     <fanart>fanart.jpg</fanart>
     <screenshot>resources/screenshot001.png</screenshot>
     <screenshot>resources/screenshot002.png</screenshot>
-    <screenshot>resources/screenshot003.png</screenshot>    
+    <screenshot>resources/screenshot003.png</screenshot>
   </assets>
   <news></news>
 </extension>
