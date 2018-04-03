@@ -179,7 +179,7 @@ class resultFILTER:
         self.top = None
         self.tr = None
         self.co = None
-        if self.item['tvshowid']:
+        if self.item.get('tvshowid'):
             self.tid = self.item['tvshowid']
         else:
             self.mid = self.item['movieid']

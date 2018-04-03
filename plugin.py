@@ -88,7 +88,7 @@ class Views:
         self.top = None
         self.tr = None
         self.co = None
-        if self.item['tvshowsid']:
+        if self.item.get('tvshowid'):
             self.tid = self.item['tvshowid']
             self.mt = 'tvshow'
         else:
