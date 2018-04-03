@@ -1,30 +1,3 @@
-# -*- coding: utf-8 -*-
-# vim: set et sw=4 ts=4 sts=4 ff=unix fenc=utf8:
-"""
-Iteration module
-
-This module handles scraping and processing the Kodi library for extras
-
-This file is part of Special Features.
-
-Special Features is free software: you can redistribute it and/or
-modify it under the terms of the GNU General Public License as
-published by the Free Software Foundation, either version 3 of
-the License, or (at your option) any later version.
-
-Special Features is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with Special Features. If not, see <http://www.gnu.org/licenses/>.
-
-@author: smitchell6879
-@author: evertiro
-@license: GPL-3.0
-"""
-
 from lib.sys_init import *
 from lib.querylib import *
 from lib.importexport import *
@@ -41,7 +14,7 @@ class resultFILTER:
         if self.vR is True:
             self.sortDir(query,result)
             self.verifyDir(self.checker)
-    '''Checking results'''
+    '''Checking results''' 
     def verifyRes(self,query,result):
         if 'result' in result:
             if result['result']['limits']['total'] != 0:
@@ -107,21 +80,9 @@ class resultFILTER:
             # else:
             #     return
     def getthumb(self,file):
-        '''Check for existing thumbnail'''
-        validext = ['.jpg', '.jpeg', '.png']
-        thumb = None
-        thumbname = os.path.splitext(file)[0] + '-thumb'
-
-        for ext in validext:
-            if os.path.isfile(thumbname + ext):
-                thumb = thumbname + ext
-                break
-
-        if thumb == None:
-            thumb = resultFILTER().build_video_thumbnail_path(file)
-            xbmc.getCacheThumbName(file)
-
-        return thumb
+        self.thumb = resultFILTER().build_video_thumbnail_path(file)
+        xbmc.getCacheThumbName(file)
+        return self.thumb
     '''Getting Files'''
     def verifyFile(self,file,sp):
         self.dump = False
@@ -135,7 +96,7 @@ class resultFILTER:
         if not self.dump:
             return self.sfil
         return
-    '''Our Extras folder has folders checking for
+    '''Our Extras folder has folders checking for 
             bluray and then dvds'''
     def verifySub(self,direct,sp):
         if '/' in self.f:
@@ -341,10 +302,10 @@ class dbEnterExit:
                 self.chkList.append(self.item.get('file'))
                 self.index += 1
         except:
-            info('No TV Shows')
+            info('No TV Shows') 
         self.range = len(self.chkList)
-        info(self.chkList)
-        info(self.range)
+        info(self.chkList) 
+        info(self.range) 
         self.entry = self.sql.exeCute('all_special','','all')
         for self.item in self.entry:
             if mysql == 'true':
@@ -364,7 +325,7 @@ class dbEnterExit:
         self.trAsh = list()
         self.entry = self.sql.exeCute('all_movies','','all')
         for self.item in self.entry:
-            if mysql == 'true':
+            if mysql == 'true':     
                 self.verify = self.verIfy(self.item['file'])
                 self.doublechk = self.sql.exeCute('fw_special',self.item['file'],'one')
                 if self.verify == 0:
@@ -442,8 +403,8 @@ class dbEnterExit:
                                         'thumbnail'  : self.citem['thumbnail'],
                                         'role'       : self.citem['role'],
                                         'order'      : self.citem['ordr'],
-                                        }
-                            self.cast.append(self.actor)
+                                        }          
+                            self.cast.append(self.actor) 
                         self.input = {'file':self.item['file'], 'title':self.item['title'], 'year':self.item['year'],'plot':self.item['plot'],
                                       'rating':self.item['rating'], 'votes':self.item['votes'], 'dateadded':self.item['dateadded'], 'mpaa':self.item['mpaa'],
                                       'premiered':self.item['premiered'], 'userrating':self.item['userrating'],'top250':self.item['top250'], 'art':self.art,
@@ -464,8 +425,8 @@ class dbEnterExit:
                                         'thumbnail'  : self.citem[2],
                                         'role'       : self.citem[3],
                                         'order'      : self.citem[4],
-                                        }
-                            self.cast.append(self.actor)
+                                        }          
+                            self.cast.append(self.actor) 
                         self.input = {'file':self.item[0], 'title':self.item[1], 'year':self.item[2],'plot':self.item[3],
                                       'rating':self.item[4], 'votes':self.item[5], 'dateadded':self.item[5], 'mpaa':self.item[7],
                                       'premiered':self.item[8], 'userrating':self.item[9],'top250':self.item[10], 'art':self.art,
@@ -492,8 +453,8 @@ class dbEnterExit:
                                         'thumbnail'  : self.citem['thumbnail'],
                                         'role'       : self.citem['role'],
                                         'order'      : self.citem['ordr'],
-                                        }
-                            self.cast.append(self.actor)
+                                        }          
+                            self.cast.append(self.actor) 
                         self.input = {'file':self.item['file'], 'title':self.item['title'], 'year':self.item['year'],'plot':self.item['plot'],
                                       'rating':self.item['rating'], 'votes':self.item['votes'], 'dateadded':self.item['dateadded'], 'mpaa':self.item['mpaa'],
                                       'premiered':self.item['premiered'], 'userrating':self.item['userrating'],'top250':self.item['top250'], 'art':self.art,
@@ -514,8 +475,8 @@ class dbEnterExit:
                                         'thumbnail'  : self.citem[2],
                                         'role'       : self.citem[3],
                                         'order'      : self.citem[4],
-                                        }
-                            self.cast.append(self.actor)
+                                        }          
+                            self.cast.append(self.actor) 
                         self.input = {'file':self.item[0], 'title':self.item[1], 'year':self.item[2],'plot':self.item[3],
                                       'rating':self.item[4], 'votes':self.item[5], 'dateadded':self.item[5], 'mpaa':self.item[7],
                                       'premiered':self.item[8], 'userrating':self.item[9],'top250':self.item[10], 'art':self.art,
@@ -542,9 +503,9 @@ class dbEnterExit:
                                         'thumbnail'  : self.citem['thumbnail'],
                                         'role'       : self.citem['role'],
                                         'order'      : self.citem['ordr'],
-                                        }
+                                        }          
                             self.cast.append(self.actor)
-                        self.art.update({'thumb':self.item['thumb']})
+                        self.art.update({'thumb':self.item['thumb']})  
                         self.input = {'file':self.item['file'], 'title':self.item['title'], 'path':self.item['bpath'],'sorttitle':self.item['sorttitle'],
                                       'plot':self.item['plot'], 'art':self.art, 'cast':self.cast
                                       }
@@ -562,9 +523,9 @@ class dbEnterExit:
                                         'thumbnail'  : self.citem[2],
                                         'role'       : self.citem[3],
                                         'order'      : self.citem[4],
-                                        }
+                                        }          
                             self.cast.append(self.actor)
-                        self.art.update({'thumb':self.item[5]})
+                        self.art.update({'thumb':self.item[5]}) 
                         self.input = {'file':self.item[0], 'title':self.item[1], 'path':self.item[2],'sorttitle':self.item[3],
                                       'plot':self.item[4], 'art':self.art, 'cast':self.cast
                                       }
@@ -645,3 +606,7 @@ class dbEnterExit:
         dbEnterExit().initDb('smallup',self.update)
         xbmc.executebuiltin('Container.Update({})'.format(xbmc.getInfoLabel('Container.FolderPath')))
         quit()
+
+
+
+    
